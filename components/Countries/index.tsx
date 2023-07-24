@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Us } from "react-flags-select";
 
 const Countries = () => {
@@ -165,7 +166,9 @@ const Countries = () => {
         </div>
         {/* End country */}
       </div>
-      <button type="button" className="bg-black text-white text-sm rounded-sm mt-2 table text-center mx-auto">More</button>
+      <Link href={'/pricing'} passHref>
+        <button type="button" className="bg-black text-white text-sm rounded mt-2 table text-center mx-auto py-2 px-4 ">More</button>
+      </Link>
     </div>
   )
 }
