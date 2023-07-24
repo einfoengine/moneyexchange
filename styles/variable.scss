@@ -1,0 +1,43 @@
+// Colors
+// =============
+// Brand color
+$nt-brand-color: #16803C;
+// State color
+// Black color
+$nt-black: #000000;
+// White color
+$nt-white: #ffffff;
+// Gray color
+// Transparent color
+$nt-transparent: transparent;
+
+// Typography
+$nt-base-font-size: 16px;
+$nt-heading-size-1: $nt-base-font-size * 2.75;
+$nt-heading-size-2: $nt-base-font-size * 2.25;
+$nt-heading-size-3: $nt-base-font-size * 1.75;
+$nt-heading-size-4: $nt-base-font-size * 1.25;
+
+$nt-font-family: Arial, Helvetica, sans-serif;
+$nt-main-heading-family: Arial, Helvetica, sans-serif;
+$nt-sub-heading-family: Arial, Helvetica, sans-serif;
+
+$nt-font-light: 100;
+$nt-font-regular: 300;
+$nt-font-semi-bold: 400;
+$nt-font-bold: 500;
+$nt-font-havy: 500;
+
+// Border
+$nt-base-border: 1px solid;
+
+// Button
+$nt-btn-primary-bg-color: $nt-black;
+$nt-btn-primary-tx-color: $nt-white;
+$nt-btn-blank-bg-color: $nt-transparent;
+$nt-btn-blank-tx-color: $nt-black;
+$nt-btn-border: $nt-base-border;
+
+// Gaps
+$nt-gutter: 30px;
+$nt-section-gap: $nt-gutter * 2;
