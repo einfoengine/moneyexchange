@@ -4,7 +4,7 @@ import morgan from 'morgan';
 import next from 'next';
 
 // Import routes
-import auth from './routes/auth.js'
+import user from './routes/user.js'
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -20,10 +20,18 @@ app.prepare().then(() => {
   // expressApp.use(cors());
 
 
-  // Routes
-  expressApp.use('/api/auth', auth);
+  // Route end points
+  // User Registration & Authentication & Profiles
+  expressApp.use('/api/user', user);
+  // Buyers action
+  expressApp.use('/api/buyer');
+  // Sellers actions
+  expressApp.use('/api/seller');
+  // Admins actions
+  expressApp.use('/api/admin');
 
-  // Define a GET route
+
+  // Test route
   expressApp.get('/api', (req, res) => {
     const responseData = {
       message: 'This is a response from the server!',
