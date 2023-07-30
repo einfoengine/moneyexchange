@@ -24,11 +24,11 @@ app.prepare().then(() => {
   // User Registration & Authentication & Profiles
   expressApp.use('/api/user', user);
   // Buyers action
-  expressApp.use('/api/buyer');
+  // expressApp.use('/api/buyer');
   // Sellers actions
-  expressApp.use('/api/seller');
+  // expressApp.use('/api/seller');
   // Admins actions
-  expressApp.use('/api/admin');
+  // expressApp.use('/api/admin');
 
 
   // Test route
