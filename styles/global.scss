@@ -1,6 +1,13 @@
 @import 'variable.scss';
 
 
+// Common
+// ====
+.nt-header{
+    &+*{
+        padding-top: $nt-gutter * 3;
+    }
+}
 
 // Element spesific
 // ====
