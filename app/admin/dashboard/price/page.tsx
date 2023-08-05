@@ -37,7 +37,7 @@ export default function Home() {
   return (
     <main className='nt-main p-2 nt-page-pricing'>
       <Section sectionName='money-converter' span={[12]} className='nt'>
-      <CurrencyTable data={data} />
+        <CurrencyTable data={data} />
       </Section>
     </main>
   )
