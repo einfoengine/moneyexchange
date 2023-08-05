@@ -5,6 +5,16 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'placehold.co/',
+        port: '',
+        // pathname: '/about',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

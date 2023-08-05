@@ -1,13 +1,13 @@
 'use client'
 import YouTube from 'react-youtube';
-const YoutubeLoader = () => {
+const YoutubeLoader = ({path}:{path: string}) => {
     const opts = {
         height: '360', 
         width: '640', 
     };
     return (
         <div className="nt-component nt-youtube-loader">
-            <YouTube videoId="ym7qcc6GXdY" opts={opts}/>       
+            <YouTube videoId={path} opts={opts}/>       
         </div>
     )
 }

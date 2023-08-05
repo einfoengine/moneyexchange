@@ -38,6 +38,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "@types/react-slick": "^0.23.10",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.26",
     "sass": "^1.63.6",

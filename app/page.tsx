@@ -52,7 +52,7 @@ export default function Home() {
         </Section>
         <Section sectionName='money-converter' span={[12]} className='nt'>
           <div className="nt-wrapper flex justify-center">
-            <YoutubeLoader />
+            <YoutubeLoader path="ym7qcc6GXdY"/>
           </div>
         </Section>
         <Section sectionName='money-converter' span={[12]} className='nt'>
