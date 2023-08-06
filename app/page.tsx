@@ -35,9 +35,8 @@ export default function Home() {
         <Section sectionName='hero' span={[12]} className='bg-green-700 pt-28 rounded text-white'>
           <Banner key={'nt-hero-1'} className='text-center'/>
         </Section>
-        
         <Section sectionName='money-converter' span={[12]} className='nt-section'>
-          <div className="p-3 border rounded bg-white absolute w-full nt-money-converter-wrap">
+          <div className="p-3 border rounded bg-white w-full nt-money-converter-wrap">
             <MoneyConverter/>
             <Countries/>
           </div>

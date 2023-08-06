@@ -53,34 +53,36 @@ interface Currency {
 
   const CurrencyList: React.FC<CurrencyListProps> = ({ currencies }) => {
     return (
-      <table className="w-full border border-collapse border-gray-300 rounded">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="border border-gray-300 px-4 py-2 text-left">FLAG</th>
-            <th className="border border-gray-300 px-4 py-2 text-left">UNIT</th>
-            <th className="border border-gray-300 px-4 py-2 text-left">CODE</th>
-            <th className="border border-gray-300 px-4 py-2 text-left">CURRENCY</th>
-            <th className="border border-gray-300 px-4 py-2 text-left">WE BUY</th>
-            <th className="border border-gray-300 px-4 py-2 text-left">WE SELL</th>
-            <th className="border border-gray-300 px-4 py-2 text-left">LAST UPDATED</th>
-            <th className="border border-gray-300 px-4 py-2 text-left">INFO</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currencies.map((currency, index) => (
-            <tr key={index}>
-              <td className="border border-gray-300 px-4 py-2">{currency.flag}</td>
-              <td className="border border-gray-300 px-4 py-2">{currency.unit}</td>
-              <td className="border border-gray-300 px-4 py-2">{currency.code}</td>
-              <td className="border border-gray-300 px-4 py-2">{currency.currency}</td>
-              <td className="border border-gray-300 px-4 py-2">{currency.weBuy}</td>
-              <td className="border border-gray-300 px-4 py-2">{currency.weSell}</td>
-              <td className="border border-gray-300 px-4 py-2">{currency.lastUpdated}</td>
-              <td className="border border-gray-300 px-4 py-2"><button className="bg-black text-white py-2 px-8 rounded">More</button></td>
+      <section className="pt-28">
+        <table className="w-full border border-collapse border-gray-300 rounded">
+          <thead>
+            <tr className="bg-gray-200">
+              <th className="border border-gray-300 px-4 py-2 text-left">FLAG</th>
+              <th className="border border-gray-300 px-4 py-2 text-left">UNIT</th>
+              <th className="border border-gray-300 px-4 py-2 text-left">CODE</th>
+              <th className="border border-gray-300 px-4 py-2 text-left">CURRENCY</th>
+              <th className="border border-gray-300 px-4 py-2 text-left">WE BUY</th>
+              <th className="border border-gray-300 px-4 py-2 text-left">WE SELL</th>
+              <th className="border border-gray-300 px-4 py-2 text-left">LAST UPDATED</th>
+              <th className="border border-gray-300 px-4 py-2 text-left">INFO</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {currencies.map((currency, index) => (
+              <tr key={index}>
+                <td className="border border-gray-300 px-4 py-2">{currency.flag}</td>
+                <td className="border border-gray-300 px-4 py-2">{currency.unit}</td>
+                <td className="border border-gray-300 px-4 py-2">{currency.code}</td>
+                <td className="border border-gray-300 px-4 py-2">{currency.currency}</td>
+                <td className="border border-gray-300 px-4 py-2">{currency.weBuy}</td>
+                <td className="border border-gray-300 px-4 py-2">{currency.weSell}</td>
+                <td className="border border-gray-300 px-4 py-2">{currency.lastUpdated}</td>
+                <td className="border border-gray-300 px-4 py-2"><button className="bg-black text-white py-2 px-8 rounded">More</button></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
     );
   };
   

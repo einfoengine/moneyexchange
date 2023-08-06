@@ -92,17 +92,19 @@ const teamMenuProps = [
 const Footer = () => {
   return(
     <>
-        <section className="nt-footer">
+        <section className="nt-footer bg-black py-20">
           <div className="container mx-auto">
             <div className="row">
               <div className="grid grid-cols-6">
                 <div className="col-span-2">
-                  <h2>Company logo</h2>
-                  <p>Company introduction message. You need to write a message that will help people to have a general impration about your company.</p>
-                  <ul>
-                    <li>user@domain.com</li>
-                    <li>+60123456789</li>
-                  </ul>
+                  <div className="nt-info">
+                    <h2 className="text-lg text-white">Company logo</h2>
+                    <p className="text-gray-400">Company introduction message. You need to write a message that will help people to have a general impration about your company.</p>
+                    <ul className="text-gray-400">
+                      <li>user@domain.com</li>
+                      <li>+60123456789</li>
+                    </ul>
+                  </div>
                 </div>
                 {/* End col */}
                 <div className="col-span-1">
@@ -127,6 +129,11 @@ const Footer = () => {
             </div>
           </div>
         </section>
+        <footer className="bg-gray-900 text-white text-center py-4">
+          <p className="text-sm">
+            All Rights Reserved 2022-2023 @ VibelyDigital
+          </p>
+        </footer>
     </>
   )
 }

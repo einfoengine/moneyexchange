@@ -1,4 +1,5 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import cors from 'cors';
 import morgan from 'morgan';
 import next from 'next';
@@ -12,6 +13,15 @@ const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   const expressApp = express();
+
+  mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }).then(()=>{
+    console.log("The database connected!");
+  }).catch((err)=>{
+    console.error("MongoDB connection error: ", err);
+  });
 
   // Add your Express routes and middleware here  
   expressApp.use(morgan('combined'));
@@ -46,8 +56,9 @@ app.prepare().then(() => {
   });
 
   // Start the server
-  expressApp.listen(3000, (err) => {
+  expressApp.listen(process.env.PORT, (err) => {
     if (err) throw err;
-    console.log('Next.Js & Express is Ready on http://localhost:3000');
+    console.log("***>> ",process.env.MONGO_URI);
+    console.log(`Next.Js & Express is Ready on http://localhost:${process.env.PORT}`);
   });
 });
