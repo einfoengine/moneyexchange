@@ -1,5 +1,9 @@
+'Use client'
+
 import Link from "next/link";
-import { Us } from "react-flags-select";
+import { Us, Sa, Ae, Au, Gb, Br, Ca, Ch, Cn, Dk, Er, Eg} from "react-flags-select";
+
+
 
 const Countries = () => {
   return (
@@ -17,7 +21,7 @@ const Countries = () => {
         {/* End country */}
         <div className="nt-country flex border rounded bg-white p-2">
           <span className="nt-flag mr-2">
-            <Us width={60} height={"auto"}/>
+            <Sa width={60} height={"auto"}/>
           </span>
           <span className="nt-details">
             <div className="nt-contry-name">UAS</div>
@@ -27,7 +31,7 @@ const Countries = () => {
         {/* End country */}
         <div className="nt-country flex border rounded bg-white p-2">
           <span className="nt-flag mr-2">
-            <Us width={60} height={"auto"}/>
+            <Er width={60} height={"auto"}/>
           </span>
           <span className="nt-details">
             <div className="nt-contry-name">UAS</div>

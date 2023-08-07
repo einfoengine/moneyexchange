@@ -24,8 +24,11 @@ app.prepare().then(() => {
   });
 
   // Add your Express routes and middleware here  
-  expressApp.use(morgan('combined'));
+  // expressApp.use(morgan('combined'));
 
+  // Add middleware to parse JSON requests
+  expressApp.use(express.json());
+  
   // Apply middleware
   // expressApp.use(cors());
 
