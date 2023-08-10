@@ -3,32 +3,20 @@
 import React, { useState } from "react";
 import ReactFlagsSelect, {Us, In} from "react-flags-select";
 
-const MoneyConverter = ({className}:{className?: string}) => {
+interface componentProps {
+    className?: string,
+    functionType: 'buy'|'sell'
+}
+
+const MoneyConverter:React.FC<componentProps> = ({className, functionType}) => {
 const [selected, setSelected] = useState("MY");
 const [selectedConvert, setSelectedConvert] = useState("IN");
   return (
     <div className={`nt-money-converter nt-compontnt ${className}`}>
         <form>
             <div className="flex">
-                <div className="nt-form-col pr-2 grow">
-                    <label htmlFor="nt-base-currency">Given amount</label>
-                    <div className="border rounded p-1 flex">
-                        <input type="text" className="grow"/>
-                        <ReactFlagsSelect
-                            countries={["US", "GB", "FR", "DE", "IT", "NG", "MY"]}
-                            selected={selected}
-                            onSelect={(code) => setSelected(code)}
-                            showSelectedLabel={false}
-                            showSecondarySelectedLabel={false}
-                            showOptionLabel={false}
-                            showSecondaryOptionLabel={false}
-                            fullWidth={false}
-                        />
-                    </div>
-                </div>
-                {/*  */}
                 <div className="nt-form-col pl-2 grow">
-                    <label htmlFor="nt-base-currency">Converted amount</label>
+                    <label className="nt-label" htmlFor="nt-base-currency">How much you wanna trade?</label>
                     <div className="border rounded p-1 flex">
                         <input type="text" className="grow"/>
                         <ReactFlagsSelect
@@ -41,6 +29,9 @@ const [selectedConvert, setSelectedConvert] = useState("IN");
                             showSecondaryOptionLabel={false}
                             fullWidth={false}
                         />
+                    </div>
+                    <div className="text-center">
+                        You will get <span>30</span> <span>RM</span>
                     </div>
                 </div>
             </div>

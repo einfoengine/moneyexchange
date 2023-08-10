@@ -3,7 +3,8 @@ import Login from "./login/page";
 const Dashboard = () => {
     return(
         <div className="nt-dashboard">
-            <Login/>
+            Admin
+            {/* <Login/> */}
         </div>
     )
 }

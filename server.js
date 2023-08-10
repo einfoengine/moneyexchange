@@ -5,7 +5,9 @@ import morgan from 'morgan';
 import next from 'next';
 
 // Import routes
-import user from './routes/user.js'
+import user from './routes/user.js';
+import auth from './routes/auth.js';
+import currency from './routes/currency.js'
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -23,26 +25,25 @@ app.prepare().then(() => {
     console.error("MongoDB connection error: ", err);
   });
 
-  // Add your Express routes and middleware here  
-  // expressApp.use(morgan('combined'));
+  // Routes and middleware here  
+  expressApp.use(morgan('combined'));
 
-  // Add middleware to parse JSON requests
+  // Pers JSON requests
   expressApp.use(express.json());
   
-  // Apply middleware
+  // Cors
   // expressApp.use(cors());
 
 
   // Route end points
-  // User Registration & Authentication & Profiles
+  // Users
   expressApp.use('/api/user', user);
-  // Buyers action
-  // expressApp.use('/api/buyer');
-  // Sellers actions
+  expressApp.use('/api/auth', auth);
+  // Currency
+  expressApp.use('/api/currencies', currency);
+  // Accounts
   // expressApp.use('/api/seller');
-  // Admins actions
-  // expressApp.use('/api/admin');
-
+  // Orders
 
   // Test route
   expressApp.get('/api', (req, res) => {

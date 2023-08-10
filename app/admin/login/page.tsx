@@ -1,9 +1,10 @@
 'use client'
 
+import axios from "axios";
 import { Button, Checkbox, Form, Input } from "antd";
 
 const onFinish = (values: any) => {
-    console.log('Success:', values);
+    axios.post('http://localhost:3000/api/auth/admin',values);
 };
 
 const onFinishFailed = (errorInfo: any) => {

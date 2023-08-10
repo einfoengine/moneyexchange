@@ -2,17 +2,20 @@
 
 import React from 'react';
 import { Form, Input, InputNumber, Button } from 'antd';
+import axios from 'axios';
 
 const RegistrationForm = () => {
-  const onFinish = (values: any) => {
-    console.log('Form values:', values);
+  const onFinish = async (values: any) => {
+    const response = await axios.post('/api/user/register', values);
+    console.log('Form values:', response);
   };
 
   return (
-    <div className='nt-component'>
+    <div className='nt-component rounded border p-20'>
+      <h3 className='mb-10'>Register your account</h3>
       <Form
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16 }}
+        labelCol={{ span: 6 }}
+        wrapperCol={{ span: 18 }}
         onFinish={onFinish}
         autoComplete="off"
       >

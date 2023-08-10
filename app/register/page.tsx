@@ -5,7 +5,7 @@ import Section from "@/components/section";
 const Register = () => {
     return(
         <Client>
-            <main>
+            <main className="pt-28">
             <Section sectionName="registration" className="nt-registration" span={[12]}>
                 <RegistrationForm/>
             </Section>

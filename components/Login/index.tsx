@@ -61,9 +61,9 @@ const Login = ({path}:{path: string} ) => {
                             </Form.Item>
 
                             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                            <Button type="primary" htmlType="submit" className="nt-btn-primary">
-                                Submit
-                            </Button>
+                                <Button type="primary" htmlType="submit" className="nt-btn-primary">
+                                    Submit
+                                </Button>
                             </Form.Item>
                         </Form>
                     </div>

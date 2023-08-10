@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+'use client'
+
+import React, { useEffect, useState } from "react";
 import Banner from '@/components/Banner';
 import Section from '@/components/section';
 import MoneyConverter from '@/components/MoneyConverter';
@@ -10,6 +12,8 @@ import Services from "@/components/Services";
 import Testimonial from "@/components/Testimonial";
 import Client from "./client-template";
 import { Button } from "antd";
+import Tabs from '@/components/Tabs';
+import axios from "axios";
 
 const testimonials = [
   {
@@ -29,7 +33,14 @@ const testimonials = [
 ]
 
 export default function Home() {
+  const [response, setResponse] = useState({});
+  useEffect(()=>{
+    axios.get('/api/currencies').then((response)=>{
+      setResponse(response);
+    });
+  },[]);
   return (
+    console.log("Response - ",response),
     <Client>
       <main className='nt-main p-2'>
         <Section sectionName='hero' span={[12]} className='bg-green-700 pt-28 rounded text-white'>
@@ -37,7 +48,7 @@ export default function Home() {
         </Section>
         <Section sectionName='money-converter' span={[12]} className='nt-section'>
           <div className="p-3 border rounded bg-white w-full nt-money-converter-wrap">
-            <MoneyConverter/>
+            <Tabs/>
             <Countries/>
           </div>
         </Section>
