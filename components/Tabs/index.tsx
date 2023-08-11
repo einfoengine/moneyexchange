@@ -9,20 +9,26 @@ const onChange = (key: string) => {
     console.log(key);
 }
 
-const items: TabsProps['items'] = [
-    {
-      key: '1',
-      label: `Buy`,
-      children: <MoneyConverter functionType="buy"/>,
-    },
-    {
-      key: '2',
-      label: `Sell`,
-      children: <MoneyConverter functionType="sell"/>,
-    },
-];
-  
 
-const App: React.FC = () => <Tabs defaultActiveKey="1" items={items} onChange={onChange} />;
 
-export default App;
+const TabCom: React.FC = ({data}:{data: any}) => {
+  const items: TabsProps['items'] = [
+      {
+        key: '1',
+        label: `Buy`,
+        children: <MoneyConverter data={data} functionType="buy"/>,
+      },
+      {
+        key: '2',
+        label: `Sell`,
+        children: <MoneyConverter data={data} functionType="sell"/>,
+      },
+  ];
+  return(
+    <>
+      <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+    </>
+  )
+};
+
+export default TabCom;

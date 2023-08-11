@@ -46,7 +46,7 @@ export default async function Home() {
         </Section>
         <Section sectionName='money-converter' span={[12]} className='nt-section'>
           <div className="p-3 border rounded bg-white w-full nt-money-converter-wrap">
-            <Tabs/>
+            <Tabs data={currencies}/>
             <Countries currencies={currencies}/>
           </div>
         </Section>
