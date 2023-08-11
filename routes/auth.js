@@ -43,8 +43,8 @@ router.post('/admin', async (req, res) => {
         });
 
         res.json({
-            success: true,
-            message: "Authentication successful!",
+            authenticated: true,
+            user: admin.username,
             token: token
         });
     } catch (err) {
