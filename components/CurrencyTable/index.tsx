@@ -1,44 +1,23 @@
 'use client'
 
-import { useState } from "react";
-import { Table, Input, InputNumber, Popconfirm, Form, Typography } from "antd";
-// import "antd/dist/antd.css";
+import React, { useState } from "react";
+import { Table, Input, Form } from "antd";
 
-interface DataItem {
-  key: string;
-  country: string;
-  unit: string;
-  code: string;
-  currency: string;
-  weBuy: number;
-  weSell: number;
-  lastUpdate: string;
-}
-
-const EditableCell: React.FC<{
-  editing: boolean;
-  dataIndex: string;
-  title: string;
-  inputType: "text" | "number";
-  record: DataItem;
-  index: number;
-}> = ({ editing, dataIndex, title, inputType, record, index, children }) => {
-  const inputNode =
-    inputType === "number" ? <InputNumber /> : <Input />;
-
+const EditableCell = ({
+  editing,
+  dataIndex,
+  title,
+  inputType,
+  record,
+  index,
+  children,
+  ...restProps
+}) => {
+  const inputNode = inputType === "number" ? <Input type="number" /> : <Input />;
   return (
-    <td>
+    <td {...restProps}>
       {editing ? (
-        <Form.Item
-          name={dataIndex}
-          style={{ margin: 0 }}
-          rules={[
-            {
-              required: true,
-              message: `Please Input ${title}!`,
-            },
-          ]}
-        >
+        <Form.Item name={dataIndex} style={{ margin: 0 }}>
           {inputNode}
         </Form.Item>
       ) : (
@@ -48,14 +27,18 @@ const EditableCell: React.FC<{
   );
 };
 
-const EditableTable: React.FC<{ data: DataItem[] }> = ({ data }) => {
+const EditableTable = ({ data }) => {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState("");
 
-  const isEditing = (record: DataItem) => record.key === editingKey;
+  const isEditing = (record) => record.key === editingKey;
 
-  const edit = (record: DataItem) => {
-    form.setFieldsValue({ ...record });
+  const edit = (record) => {
+    form.setFieldsValue({
+      weSell: "",
+      weBuy: "",
+      ...record,
+    });
     setEditingKey(record.key);
   };
 
@@ -63,7 +46,7 @@ const EditableTable: React.FC<{ data: DataItem[] }> = ({ data }) => {
     setEditingKey("");
   };
 
-  const save = async (key: React.Key) => {
+  const save = async (key) => {
     try {
       const row = await form.validateFields();
       const newData = [...data];
@@ -72,10 +55,13 @@ const EditableTable: React.FC<{ data: DataItem[] }> = ({ data }) => {
       if (index > -1) {
         const item = newData[index];
         newData.splice(index, 1, { ...item, ...row });
+        console.log("Edited data:", newData[index]);
+        setEditingKey("");
       } else {
-        newData.push(row as DataItem);
+        newData.push(row);
+        console.log("Added data:", row);
+        setEditingKey("");
       }
-      setEditingKey("");
     } catch (errInfo) {
       console.log("Validate Failed:", errInfo);
     }
@@ -84,63 +70,62 @@ const EditableTable: React.FC<{ data: DataItem[] }> = ({ data }) => {
   const columns = [
     {
       title: "Country",
-      dataIndex: "country",
-      key: "country",
-    },
-    {
-      title: "Unit",
-      dataIndex: "unit",
-      key: "unit",
-    },
-    {
-      title: "Code",
-      dataIndex: "code",
-      key: "code",
+      dataIndex: "Country",
+      key: "Country",
     },
     {
       title: "Currency",
-      dataIndex: "currency",
-      key: "currency",
+      dataIndex: "Currency",
+      key: "Currency",
     },
     {
-      title: "We Buy",
-      dataIndex: "weBuy",
-      key: "weBuy",
-      editable: true,
+      title: "Flag",
+      dataIndex: "Flag",
+      key: "Flag",
     },
     {
-      title: "We Sell",
+      title: "Code",
+      dataIndex: "Code",
+      key: "Code",
+    },
+    {
+      title: "weSell",
       dataIndex: "weSell",
       key: "weSell",
       editable: true,
     },
     {
-      title: "Last Update",
-      dataIndex: "lastUpdate",
-      key: "lastUpdate",
+      title: "weBuy",
+      dataIndex: "weBuy",
+      key: "weBuy",
+      editable: true,
     },
     {
       title: "Action",
-      dataIndex: "action",
       key: "action",
-      render: (_: unknown, record: DataItem) => {
+      render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
           <span>
-            <a href="javascript:void(0);" onClick={() => save(record.key)}>
+            <a
+              href="javascript:void(0);"
+              onClick={() => save(record.key)}
+              style={{ marginRight: 8 }}
+            >
               Save
             </a>
-            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-              <a>Cancel</a>
-            </Popconfirm>
+            <a href="javascript:void(0);" onClick={cancel}>
+              Cancel
+            </a>
           </span>
         ) : (
-          <Typography.Link
-            disabled={editingKey !== ""}
+          <a
+            href="javascript:void(0);"
             onClick={() => edit(record)}
+            disabled={editingKey !== ""}
           >
             Edit
-          </Typography.Link>
+          </a>
         );
       },
     },
@@ -153,9 +138,9 @@ const EditableTable: React.FC<{ data: DataItem[] }> = ({ data }) => {
 
     return {
       ...col,
-      onCell: (record: DataItem) => ({
+      onCell: (record) => ({
         record,
-        inputType: col.dataIndex === "weBuy" || col.dataIndex === "weSell" ? "number" : "text",
+        inputType: col.dataIndex === "weSell" || col.dataIndex === "weBuy" ? "number" : "text",
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
@@ -171,7 +156,8 @@ const EditableTable: React.FC<{ data: DataItem[] }> = ({ data }) => {
             cell: EditableCell,
           },
         }}
-        dataSource={data}
+        bordered
+        dataSource={data.map((item, index) => ({ ...item, key: index.toString() }))}
         columns={mergedColumns}
         rowClassName="editable-row"
         pagination={false}
@@ -180,34 +166,4 @@ const EditableTable: React.FC<{ data: DataItem[] }> = ({ data }) => {
   );
 };
 
-export default function CurrencyTable() {
-  const data: DataItem[] = [
-    {
-      key: "1",
-      country: "Country 1",
-      unit: "Unit 1",
-      code: "BDT",
-      currency: "Currency 1",
-      weBuy: 100,
-      weSell: 110,
-      lastUpdate: "Update 1",
-    },
-    {
-      key: "2",
-      country: "Country 2",
-      unit: "Unit 2",
-      code: "USD",
-      currency: "Currency 2",
-      weBuy: 25,
-      weSell: 30,
-      lastUpdate: "Update 2",
-    },
-    // Add more data as needed
-  ];
-
-  return (
-    <div style={{ margin: "20px" }}>
-      <EditableTable data={data} />
-    </div>
-  );
-}
+export default EditableTable;

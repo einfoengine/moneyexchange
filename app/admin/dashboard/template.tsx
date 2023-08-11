@@ -1,6 +1,7 @@
 'use client'
 import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, Divider } from 'antd';
+import BreadCrumb from '../../../components/BreadCrumb';
 const { Header, Content, Footer, Sider } = Layout;
 
 const topMenu = [
@@ -8,7 +9,8 @@ const topMenu = [
     { key: 'about', label: 'Settings'},
     { key: 'contact', label: 'Tasks'},
     { key: 'contact', label: 'Accounts'},
-    { key: 'contact', label: 'Site'}
+    { key: 'contact', label: 'Site'},
+    { key: 'logout', label: 'Logout'}
   ];
 
   const asideMenu = [
@@ -39,26 +41,7 @@ const Template:React.FC<{children: React.ReactNode}> = ({children}) => {
             </Header>
             {/* End top */}
             <Content style={{ padding: '0 50px' }}>
-                <Breadcrumb
-                    items={[
-                        {
-                            href: '',
-                            title: <HomeOutlined />,
-                        },
-                        {
-                            href: '',
-                            title: (
-                            <>
-                                <UserOutlined />
-                                <span>Application List</span>
-                            </>
-                            ),
-                        },
-                        {
-                            title: 'Application',
-                        },
-                    ]}
-                />
+                {/* <BreadCrumb/> */}
                 <Divider/>
                 {/* End breadcrumb */}
                 <div className="nt-main grid grid-cols-12">
@@ -84,3 +67,4 @@ const Template:React.FC<{children: React.ReactNode}> = ({children}) => {
     );
 }
 export default Template
+

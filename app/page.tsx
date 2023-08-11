@@ -1,10 +1,6 @@
-'use client'
-
 import React, { useEffect, useState } from "react";
 import Banner from '@/components/Banner';
 import Section from '@/components/section';
-import MoneyConverter from '@/components/MoneyConverter';
-import ReactFlagsSelect from "react-flags-select";
 import Countries from "@/components/Countries";
 import TitleBuilder from "@/components/TitleBuilder";
 import YoutubeLoader from "@/components/YoutubeLoader";
@@ -32,15 +28,18 @@ const testimonials = [
   }
 ]
 
-export default function Home() {
-  const [response, setResponse] = useState({});
-  useEffect(()=>{
-    axios.get('/api/currencies').then((response)=>{
-      setResponse(response);
-    });
-  },[]);
+const getCurrencies = async () => {
+  const response = await axios.get('http://localhost:3000/api/currencies');
+  if(response.status!==200){
+    throw new Error("Faild to get the currencies!");
+  }
+  return response.data
+}
+
+export default async function Home() {
+  const currency = await getCurrencies();
+  console.log("Get currencies ", currency);
   return (
-    console.log("Response - ",response),
     <Client>
       <main className='nt-main p-2'>
         <Section sectionName='hero' span={[12]} className='bg-green-700 pt-28 rounded text-white'>

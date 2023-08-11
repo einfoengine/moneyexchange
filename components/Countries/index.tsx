@@ -5,7 +5,7 @@ import { Us, Sa, Ae, Au, Gb, Br, Ca, Ch, Cn, Dk, Er, Eg} from "react-flags-selec
 
 
 
-const Countries = () => {
+const Countries = ({currencies}:{currencies: any}) => {
   return (
     <div className="nt-component nt-countries mt-4">
       <div className="nt-wrap grid grid-cols-4 gap-2">

@@ -3,7 +3,7 @@
 import axios from "axios";
 import { Button, Checkbox, Form, Input } from "antd";
 import { LoginContext } from '@/Context';
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 
@@ -16,6 +16,12 @@ type FieldType = {
 const Login = () => {
     const router = useRouter();
     const {state, dispatch} = useContext(LoginContext);
+
+    useEffect(()=>{
+        if(state.authenticated===true){
+            router.push('/admin');
+        }
+    },[state]);
     
     const onFinish = async (values: any) => {
         const {data} = await axios.post('http://localhost:3000/api/auth/admin', values);

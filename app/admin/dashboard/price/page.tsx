@@ -1,43 +1,24 @@
-import React, { useState } from "react";
-import Banner from '@/components/Banner';
+import React from "react";
 import Section from '@/components/section';
-import MoneyConverter from '@/components/MoneyConverter';
-import ReactFlagsSelect from "react-flags-select";
-import Countries from "@/components/Countries";
-import TitleBuilder from "@/components/TitleBuilder";
-import YoutubeLoader from "@/components/YoutubeLoader";
-import Services from "@/components/Services";
-import Testimonial from "@/components/Testimonial";
 
 import CurrencyTable from "@/components/CurrencyTable";
+import axios from "axios";
 
-const data = [
-  {
-    country: 'Country 1',
-    unit: 'Unit 1',
-    code: 'BDT',
-    currency: 'Currency 1',
-    weBuy: 100,
-    weSell: 110,
-    lastUpdate: 'Update 1',
-  },
-  {
-    country: 'Country 2',
-    unit: 'Unit 2',
-    code: 'USD',
-    currency: 'Currency 2',
-    weBuy: 25,
-    weSell: 30,
-    lastUpdate: 'Update 2',
-  },
-  // Add more data as needed
-];
+const getCurrencies = async () => {
+  const response = await axios.get('http://localhost:3000/api/currencies');
+  if (response.status!==200) {
+    throw new Error('Faild getting currency!')
+  }
+  return response.data;
+};
 
-export default function Home() {
+export default async function Home() {
+  const currencies = await getCurrencies();
+  console.log("My data: ", currencies);
   return (
     <main className='nt-main p-2 nt-page-pricing'>
-      <Section sectionName='money-converter' span={[12]} className='nt'>
-        <CurrencyTable data={data} />
+      <Section sectionName='money-converter' span={[12]} className='nt'>  
+        <CurrencyTable data={currencies} />
       </Section>
     </main>
   )

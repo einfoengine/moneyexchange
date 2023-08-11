@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useReducer, ReactNode } from "react";
+import React, { createContext, useReducer, ReactNode, useEffect } from "react";
 
 // Define the shape of the user state
 interface UserState {
@@ -45,12 +45,21 @@ const userReducer = (state: UserState, action: UserAction): UserState => {
 // This provides the current state and dispatch function
 const LoginProvider: React.FC<{children: ReactNode}>=({children})=>{
     const [state, dispatch] = useReducer(userReducer, initialState);
+    useEffect(()=>{
+        const userString = localStorage.getItem('user');
+        if(userString!== null){
+            const user = JSON.parse(userString);
+            dispatch({
+                type: 'login',
+                payload: user
+            })
+        }
+    },[]);
     return(
         <LoginContext.Provider value={{state, dispatch}}>
             {children}
         </LoginContext.Provider>
     )
 }
-
 
 export { LoginProvider,  LoginContext};
