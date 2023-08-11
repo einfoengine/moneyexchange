@@ -9,7 +9,6 @@ const router = express.Router();
 router.get('/', async (req, res)=>{
     try {
         const curriencies = await Currency.find();
-        console.log("Curriencies: ",curriencies);
         res.json(curriencies);
     } catch (error) {
         console.log("Error: Currency fetch failed - ", error);

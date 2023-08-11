@@ -37,8 +37,7 @@ const getCurrencies = async () => {
 }
 
 export default async function Home() {
-  const currency = await getCurrencies();
-  console.log("Get currencies ", currency);
+  const currencies = await getCurrencies();
   return (
     <Client>
       <main className='nt-main p-2'>
@@ -48,7 +47,7 @@ export default async function Home() {
         <Section sectionName='money-converter' span={[12]} className='nt-section'>
           <div className="p-3 border rounded bg-white w-full nt-money-converter-wrap">
             <Tabs/>
-            <Countries/>
+            <Countries currencies={currencies}/>
           </div>
         </Section>
         <Section sectionName='services' span={[12, 12]} className='pt-28'>
