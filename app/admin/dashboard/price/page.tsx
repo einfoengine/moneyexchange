@@ -14,7 +14,6 @@ const getCurrencies = async () => {
 
 export default async function Home() {
   const currencies = await getCurrencies();
-  console.log("My data: ", currencies);
   return (
     <main className='nt-main p-2 nt-page-pricing'>
       <Section sectionName='money-converter' span={[12]} className='nt'>  

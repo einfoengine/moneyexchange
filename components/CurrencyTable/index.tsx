@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Table, Input, Form } from "antd";
+import axios from "axios";
 
 const EditableCell = ({
   editing,
@@ -27,7 +28,7 @@ const EditableCell = ({
   );
 };
 
-const EditableTable = ({ data }) => {
+const EditableTable = ({ data }:{data: {}[]}) => {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState("");
 
@@ -49,21 +50,24 @@ const EditableTable = ({ data }) => {
   const save = async (key) => {
     try {
       const row = await form.validateFields();
-      const newData = [...data];
-      const index = newData.findIndex((item) => key === item.key);
-
-      if (index > -1) {
-        const item = newData[index];
-        newData.splice(index, 1, { ...item, ...row });
-        console.log("Edited data:", newData[index]);
-        setEditingKey("");
-      } else {
-        newData.push(row);
-        console.log("Added data:", row);
-        setEditingKey("");
+      const updateObject = {
+        ...row,
+        _id: key,
+        weBuy: parseFloat(row.weBuy),
+        weSell: parseFloat(row.weSell)
       }
+      console.log(updateObject);
+      const response = await axios.put('/api/currencies/update', {
+        weBuy: parseFloat(row.weBuy),
+        weSell: parseFloat(row.weSell),
+        _id: key
+        // updateObject
+      });
+      console.log(response);
+      setEditingKey("");
     } catch (errInfo) {
       console.log("Validate Failed:", errInfo);
+      setEditingKey("");
     }
   };
 
@@ -140,7 +144,7 @@ const EditableTable = ({ data }) => {
       ...col,
       onCell: (record) => ({
         record,
-        inputType: col.dataIndex === "weSell" || col.dataIndex === "weBuy" ? "number" : "text",
+        inputType: col.dataIndex === "weSell" || col.dataIndex === "weBuy" ? "number" : "text", 
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
@@ -157,7 +161,7 @@ const EditableTable = ({ data }) => {
           },
         }}
         bordered
-        dataSource={data.map((item, index) => ({ ...item, key: index.toString() }))}
+        dataSource={data.map((item, index) => ({ ...item, key: item._id.toString() }))}
         columns={mergedColumns}
         rowClassName="editable-row"
         pagination={false}
