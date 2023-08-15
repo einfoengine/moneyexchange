@@ -1,30 +1,33 @@
-import mongoose from "mongoose";
+// models/Admin.js
+import mongoose from 'mongoose';
 
-const adminSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    phone: {
-        type: String,
-        required: true
-    },
+const adminSchema = new mongoose.Schema(
+  {
     username: {
-        type: String,
-        default: 'admin'
+      type: String,
+      required: true,
+      unique: true,
     },
-    pass: {
-        type: String,
-        default: 'demo'
+    password: {
+      type: String,
+      required: true,
     },
-    permission: {
-        type: String, 
-        default: 'admin',
-        immutable: true
-    }
-}, {
-    timestamps: true
-});
+    isSuperuser: {
+      type: Boolean,
+      default: false, 
+    },
+    accessLevel: {
+      type: String,
+      enum: ['low', 'medium', 'high'], 
+      default: 'low',
+    },
+    canCreateAdmin: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  { timestamps: true }
+);
 
 const Admin = mongoose.model('Admin', adminSchema);
 
