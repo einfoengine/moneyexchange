@@ -10,7 +10,6 @@ const onChange = (key: string) => {
 }
 
 
-
 const TabCom: React.FC = ({data}:{data: any}) => {
   const items: TabsProps['items'] = [
       {

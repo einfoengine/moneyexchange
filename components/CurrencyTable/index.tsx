@@ -56,7 +56,7 @@ const EditableTable = ({ data }:{data: {}[]}) => {
         weBuy: parseFloat(row.weBuy),
         weSell: parseFloat(row.weSell)
       }
-      console.log(updateObject);
+      console.log("Update object: ",updateObject);
       const response = await axios.put('/api/currencies/update', {
         weBuy: parseFloat(row.weBuy),
         weSell: parseFloat(row.weSell),
