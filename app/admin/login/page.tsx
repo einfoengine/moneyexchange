@@ -24,7 +24,7 @@ const Login = () => {
     },[state]);
     
     const onFinish = async (values: any) => {
-        const {data} = await axios.post('http://localhost:3000/api/auth/admin', values);
+        const {data} = await axios.post('http://localhost:3000/api/admin/login', values);
         dispatch({
             type: 'login',
             payload: data

@@ -2,6 +2,8 @@
 import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, Divider } from 'antd';
 import BreadCrumb from '../../../components/BreadCrumb';
+import {LoginContext} from '@/Context'
+import { useContext } from 'react';
 const { Header, Content, Footer, Sider } = Layout;
 
 const topMenu = [
@@ -11,7 +13,7 @@ const topMenu = [
     { key: 'contact', label: 'Accounts'},
     { key: 'contact', label: 'Site'},
     { key: 'logout', label: 'Logout'}
-  ];
+];
 
   const asideMenu = [
     { key: 'dashboard', label: (<a href="/admin/dashboard">Dashboard</a>) },
@@ -24,7 +26,18 @@ const topMenu = [
   ];
 
 const Template:React.FC<{children: React.ReactNode}> = ({children}) => {
+    const {state, dispatch} = useContext(LoginContext);
     
+    const handleTopMenu = (e:any) => {
+        console.log('click ', e.key);
+        if(e.key==='logout'){
+            dispatch({
+                type: "logout"
+            });
+            localStorage.removeItem("user");
+        }
+    };
+
     return(
         <div className="nt-dashboard">
             <Header className='grid grid-cols-12 nt-top'>
@@ -32,7 +45,8 @@ const Template:React.FC<{children: React.ReactNode}> = ({children}) => {
                     <h1 className="nt-logo text-white">Logo</h1>
                 </div>
                 <Menu
-                    className='col-span-10'
+                    onClick={handleTopMenu}
+                    className='nt-top-menu col-span-10'
                     theme="dark"
                     mode="horizontal"
                     defaultSelectedKeys={['2']}

@@ -12,19 +12,28 @@ const adminSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    isSuperuser: {
+    is_superuser: {
       type: Boolean,
       default: false, 
     },
-    accessLevel: {
+    access_level: {
       type: String,
       enum: ['low', 'medium', 'high'], 
       default: 'low',
     },
-    canCreateAdmin: {
+    can_create_admin: {
       type: Boolean,
       default: false,
     },
+    designation: {
+      type: String,
+      enum: ['assistant admin', 'manager', 'owner'],
+      default: 'assistant admin'
+    },
+    avatar: {
+      type: String,
+      default: undefined
+    }
   },
   { timestamps: true }
 );

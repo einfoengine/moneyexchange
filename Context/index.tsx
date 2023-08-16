@@ -24,7 +24,6 @@ const initialState: UserState = {
 // Create context
 // Create context
 const LoginContext = createContext<{ state: UserState, dispatch: React.Dispatch<UserAction> }>({ state: initialState, dispatch: () => {} });
-
 // Reducer function
 const userReducer = (state: UserState, action: UserAction): UserState => {
   switch (action.type) {
@@ -45,6 +44,7 @@ const userReducer = (state: UserState, action: UserAction): UserState => {
 // This provides the current state and dispatch function
 const LoginProvider: React.FC<{children: ReactNode}>=({children})=>{
     const [state, dispatch] = useReducer(userReducer, initialState);
+
     useEffect(()=>{
         const userString = localStorage.getItem('user');
         if(userString!== null){

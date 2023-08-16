@@ -17,11 +17,11 @@ const Login = () => {
     const router = useRouter();
     const {state, dispatch} = useContext(LoginContext);
 
-    useEffect(()=>{
-        if(state.authenticated===true){
-            router.push('/admin/dashboard');
-        }
-    },[state]);
+    if(state.authenticated===true){
+        router.push('/admin/dashboard');
+    }
+    // useEffect(()=>{
+    // },[state]);
     
     const onFinish = async (values: any) => {
         const {data} = await axios.post('http://localhost:3000/api/auth/admin', values);
@@ -33,7 +33,6 @@ const Login = () => {
         if(data.authenticated===true){
             router.push('/admin/dashboard');
         }
-        console.log("Login data ", data);
     };
     
     const onFinishFailed = (errorInfo: any) => {

@@ -6,7 +6,7 @@ import next from 'next';
 
 // Import routes
 import user from './routes/user.js';
-import auth from './routes/auth.js';
+import admin from './routes/admin.js';
 import currency from './routes/currency.js'
 
 const dev = process.env.NODE_ENV !== 'production';
@@ -15,7 +15,6 @@ const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   const expressApp = express();
-
   mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -38,7 +37,7 @@ app.prepare().then(() => {
   // Route end points
   // Users
   expressApp.use('/api/user', user);
-  expressApp.use('/api/auth', auth);
+  expressApp.use('/api/admin', admin);
   // Currency
   expressApp.use('/api/currencies', currency);
   // Accounts
