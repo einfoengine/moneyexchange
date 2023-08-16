@@ -7,11 +7,11 @@ const Countries = ({currencies}:{currencies: any}) => {
             return(
               <div key={index} className="nt-currencies-list flex border rounded bg-white p-2">
                 <span className="nt-flag mr-2" >
-                  {item.Flag}
+                  {item.flag}
                 </span>
                 <span className="nt-details">
-                  <div className="nt-contry-name">{item.Code}</div>
-                  <div className="nt-currency-rate"><span className="text-xs">We buy </span>{item.weBuy} - <span className="text-xs">We sell </span>{item.weSell}</div>
+                  <div className="nt-contry-name">{item.code}</div>
+                  <div className="nt-currency-rate"><span className="text-xs">We buy </span>{item.we_buy} - <span className="text-xs">We sell </span>{item.we_sell}</div>
                 </span>
               </div>
             )
