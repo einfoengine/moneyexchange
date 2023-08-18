@@ -6,7 +6,6 @@ const router = express.Router();
 
 // Authenticate admin
 // Method:  Post
-// Path:    'http://localhost:3000/api/auth/admin'
 
 // Create
 router.post('/create', async(req, res)=>{
@@ -85,7 +84,10 @@ router.get('/', async (req, res)=> {
     console.log("Hi admin");
     res.send("Hello admin")
 });
-
+router.post('/', async (req, res)=> {
+    console.log("Hi admin");
+    res.send(req.body)
+});
 // ... Other routes ...
 
 export default router;

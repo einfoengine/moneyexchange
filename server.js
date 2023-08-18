@@ -3,6 +3,9 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import morgan from 'morgan';
 import next from 'next';
+import auth from './middleware/auth.js'
+import cookieParser from 'cookie-parser';
+
 
 // Import routes
 import user from './routes/user.js';
@@ -25,19 +28,19 @@ app.prepare().then(() => {
   });
 
   // Routes and middleware here  
-  expressApp.use(morgan('combined'));
+  // expressApp.use(morgan('combined'));
 
   // Pers JSON requests
   expressApp.use(express.json());
   
-  // Cors
-  // expressApp.use(cors());
-
+  
+  expressApp.use(cookieParser());
 
   // Route end points
   // Users
   expressApp.use('/api/user', user);
-  expressApp.use('/api/admin', admin);
+  expressApp.use('/api/admin', auth, admin);
+  
   // Currency
   expressApp.use('/api/currencies', currency);
   // Accounts
