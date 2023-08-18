@@ -4,6 +4,8 @@ import { Breadcrumb, Layout, Menu, Divider } from 'antd';
 import BreadCrumb from '../../../components/BreadCrumb';
 import {LoginContext} from '@/Context'
 import { useContext } from 'react';
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
 const { Header, Content, Footer, Sider } = Layout;
 
 const topMenu = [
@@ -27,14 +29,19 @@ const topMenu = [
 
 const Template:React.FC<{children: React.ReactNode}> = ({children}) => {
     const {state, dispatch} = useContext(LoginContext);
+    const router = useRouter();
     
-    const handleTopMenu = (e:any) => {
-        console.log('click ', e.key);
+    const handleTopMenu = async (e:any) => {
+        
+        // Handle logout
         if(e.key==='logout'){
+            const response = await axios.get('/api/admin/logout');
+            console.log("Logout response: ", response);
             dispatch({
                 type: "logout"
             });
             localStorage.removeItem("user");
+            router.push('/admin/login');
         }
     };
 

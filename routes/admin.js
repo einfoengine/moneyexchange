@@ -82,6 +82,22 @@ router.post('/login', async (req, res) => {
     }
 });
 
+// Logout
+router.get('/logout', async(req, res)=>{
+    try {
+        res.clearCookie('token');
+        res.json({
+            message: "Success: logout",
+        });
+    } catch (err) {
+        console.log("Error: logout failed!", err);
+        res.json({
+            message: "Error: logout failed!",
+            err
+        })
+    }
+});
+
 // Find admins
 router.get('/', async (req, res)=> {
     console.log("Hi admin");
