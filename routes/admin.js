@@ -1,6 +1,7 @@
 import express from "express";
 import Admin from '../models/Admin.js';
 import jwt from 'jsonwebtoken';
+import auth from "../middleware/auth.js";
 
 const router = express.Router();
 
@@ -8,7 +9,7 @@ const router = express.Router();
 // Method:  Post
 
 // Create
-router.post('/create', async(req, res)=>{
+router.post('/create', auth, async(req, res)=>{
     const {username, password, is_superuser, access_lavel, can_create_admin, designation, avatar} = req.body;
 
     const response = await Admin.find({ is_superuser: true });
@@ -34,8 +35,10 @@ router.post('/create', async(req, res)=>{
 // Login
 router.post('/login', async (req, res) => {
     const { username, password, remember } = req.body;
+    console.log("Credentials: ", username, password);
     try {
         const admin = await Admin.findOne({ username });
+        console.log("User: ", admin);
         if (!admin) {
             return res.status(401).json({
                 success: false,
