@@ -74,34 +74,40 @@ const EditableTable = ({ data }:{data: {}[]}) => {
   const columns = [
     {
       title: "Country",
-      dataIndex: "Country",
-      key: "Country",
+      dataIndex: "country",
+      key: "country",
     },
     {
       title: "Currency",
-      dataIndex: "Currency",
-      key: "Currency",
+      dataIndex: "currency",
+      key: "currency",
     },
     {
       title: "Flag",
-      dataIndex: "Flag",
-      key: "Flag",
+      dataIndex: "flag",
+      key: "flag",
     },
     {
       title: "Code",
-      dataIndex: "Code",
-      key: "Code",
+      dataIndex: "code",
+      key: "code",
     },
     {
-      title: "weSell",
-      dataIndex: "weSell",
-      key: "weSell",
+      title: "Unit",
+      dataIndex: "unit",
+      key: "unit",
       editable: true,
     },
     {
-      title: "weBuy",
-      dataIndex: "weBuy",
-      key: "weBuy",
+      title: "We Sell",
+      dataIndex: "we_sell",
+      key: "we_sell",
+      editable: true,
+    },
+    {
+      title: "We Buy",
+      dataIndex: "we_buy",
+      key: "we_buy",
       editable: true,
     },
     {
@@ -144,7 +150,7 @@ const EditableTable = ({ data }:{data: {}[]}) => {
       ...col,
       onCell: (record) => ({
         record,
-        inputType: col.dataIndex === "weSell" || col.dataIndex === "weBuy" ? "number" : "text", 
+        inputType: col.dataIndex === "we_sell" || col.dataIndex === "we_buy" || col.dataIndex==="unit" ? "number" : "text" ,
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),

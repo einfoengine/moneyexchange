@@ -32,6 +32,7 @@ router.post('/create', auth, async(req, res)=>{
         })
     }
 })
+
 // Login
 router.post('/login', async (req, res) => {
     const { username, password, remember } = req.body;
@@ -83,7 +84,7 @@ router.post('/login', async (req, res) => {
 });
 
 // Logout
-router.get('/logout', async(req, res)=>{
+router.get('/logout', auth, async(req, res)=>{
     try {
         res.clearCookie('token');
         res.json({

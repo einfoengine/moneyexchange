@@ -4,20 +4,26 @@ import Currency from '../models/Currency.js';
 import * as mongoose from 'mongoose';
 const router = express.Router();
 
-// Get currency
-// Path:    /curriencies
-// Method:  /Get
-router.get('/', async (req, res)=>{
+// Find currency
+// Path:    /api/currencies/find
+// Method:  Get
+router.get('/find', async (req, res)=>{
     try {
         const curriencies = await Currency.find();
         res.json(curriencies);
     } catch (error) {
         console.log("Error: Currency fetch failed - ", error);
+        res.json({
+            message: "Error: faild fetch currency."
+        })
     }
 });
 
 export default router;
 
+// Update currency
+// Path:    /api/currencies/update
+// Method:  put
 router.put('/update', async (req, res) => {
     try {
         const { _id, we_buy, we_sell } = req.body;
@@ -47,12 +53,16 @@ router.put('/update', async (req, res) => {
     }
 });
 
+// Insert many currency
+// Path:    /api/currencies/insertmany
+// Method:  Post
 router.post('/insertmany', async (req, res)=>{
     try {
         console.log("Request body: ", req.body);
         const response = await Currency.insertMany(req.body);
+        console.log(response);
         res.json({
-            response
+            message: "Successful",
         });
     } catch (err) {
         console.log(err);

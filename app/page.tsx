@@ -29,7 +29,7 @@ const testimonials = [
 ]
 
 const getCurrencies = async () => {
-  const response = await axios.get('http://localhost:3000/api/currencies');
+  const response = await axios.get('http://localhost:3000/api/currencies/find');
   if(response.status!==200){
     throw new Error("Faild to get the currencies!");
   }

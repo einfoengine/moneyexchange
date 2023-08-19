@@ -5,13 +5,15 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
+  proxy: {
+    '/api': 'http://localhost:3000',
+  },
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'placehold.co/',
+        hostname: 'placehold.co',
         port: '',
-        // pathname: '/about',
       },
     ],
   },
