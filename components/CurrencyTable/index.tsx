@@ -36,8 +36,9 @@ const EditableTable = ({ data }:{data: {}[]}) => {
 
   const edit = (record) => {
     form.setFieldsValue({
-      weSell: "",
-      weBuy: "",
+      we_sell: "",
+      we_buy: "",
+      unit: "",
       ...record,
     });
     setEditingKey(record.key);
@@ -50,17 +51,28 @@ const EditableTable = ({ data }:{data: {}[]}) => {
   const save = async (key) => {
     try {
       const row = await form.validateFields();
+      
       const updateObject = {
         ...row,
         _id: key,
-        weBuy: parseFloat(row.weBuy),
-        weSell: parseFloat(row.weSell)
+        we_buy: parseFloat(row.we_buy),
+        we_sell: parseFloat(row.we_sell),
+        unit: parseFloat(row.unit),
       }
-      console.log("Update object: ",updateObject);
+      
+      console.log("Update object: ",{
+        _id: key,
+        we_buy: parseFloat(row.we_buy),
+        we_sell: parseFloat(row.we_sell),
+        unit: parseFloat(row.unit),
+      });
+
+
       const response = await axios.put('/api/currencies/update', {
-        weBuy: parseFloat(row.weBuy),
-        weSell: parseFloat(row.weSell),
-        _id: key
+        _id: key,
+        we_buy: parseFloat(row.we_buy),
+        we_sell: parseFloat(row.we_sell),
+        unit: parseFloat(row.unit),
         // updateObject
       });
       console.log(response);

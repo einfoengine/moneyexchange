@@ -26,13 +26,15 @@ export default router;
 // Method:  put
 router.put('/update', async (req, res) => {
     try {
-        const { _id, we_buy, we_sell } = req.body;
+        const { _id, we_buy, we_sell, unit } = req.body;
 
         console.log("Request body: ", req.body);
+        console.log("_id: ", _id);
 
         const updateObject = {
             we_buy,
-            we_sell
+            we_sell, 
+            unit
         };
 
         const response = await Currency.findOneAndUpdate(
