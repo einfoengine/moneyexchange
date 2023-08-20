@@ -59,6 +59,7 @@ const EditableTable = ({ data }:{data: {}[]}) => {
         we_sell: parseFloat(row.we_sell),
         unit: parseFloat(row.unit),
       });
+      
 
       const newData = [...priceList];
       const index = newData.findIndex((item) => key === item.key);
