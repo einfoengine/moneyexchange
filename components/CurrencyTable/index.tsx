@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Table, Input, Form } from "antd";
 import axios from "axios";
 
@@ -30,6 +30,7 @@ const EditableCell = ({
 
 const EditableTable = ({ data }:{data: {}[]}) => {
   const [form] = Form.useForm();
+  const [priceList, setData] = useState(data);
   const [editingKey, setEditingKey] = useState("");
 
   const isEditing = (record) => record.key === editingKey;
@@ -51,30 +52,33 @@ const EditableTable = ({ data }:{data: {}[]}) => {
   const save = async (key) => {
     try {
       const row = await form.validateFields();
-      
-      const updateObject = {
-        ...row,
-        _id: key,
-        we_buy: parseFloat(row.we_buy),
-        we_sell: parseFloat(row.we_sell),
-        unit: parseFloat(row.unit),
-      }
-      
-      console.log("Update object: ",{
-        _id: key,
-        we_buy: parseFloat(row.we_buy),
-        we_sell: parseFloat(row.we_sell),
-        unit: parseFloat(row.unit),
-      });
-
 
       const response = await axios.put('/api/currencies/update', {
         _id: key,
         we_buy: parseFloat(row.we_buy),
         we_sell: parseFloat(row.we_sell),
         unit: parseFloat(row.unit),
-        // updateObject
       });
+
+      const newData = [...priceList];
+      const index = newData.findIndex((item) => key === item.key);
+      console.log("Hello new data ");
+      if (index > -1) {
+        const item = newData[index];
+        newData.splice(index, 1, {
+          ...item,
+          ...row,
+        });
+        setData(newData);
+        console.log("priceList ", priceList);
+        setEditingKey('');
+      } else {
+        console.log("priceList ** ", priceList);
+        newData.push(row);
+        setData(newData);
+        setEditingKey('');
+      }
+
       console.log(response);
       setEditingKey("");
     } catch (errInfo) {
