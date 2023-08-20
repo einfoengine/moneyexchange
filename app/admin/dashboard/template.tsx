@@ -1,21 +1,11 @@
 'use client'
-import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, Divider } from 'antd';
-import BreadCrumb from '../../../components/BreadCrumb';
 import {LoginContext} from '@/Context'
 import { useContext } from 'react';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
-const { Header, Content, Footer, Sider } = Layout;
+const { Content} = Layout;
 
-const topMenu = [
-    { key: 'home', label: 'Dashboard'},
-    { key: 'about', label: 'Settings'},
-    { key: 'contact', label: 'Tasks'},
-    { key: 'contact', label: 'Accounts'},
-    { key: 'contact', label: 'Site'},
-    { key: 'logout', label: 'Logout'}
-];
+
 
   const asideMenu = [
     { key: 'dashboard', label: (<a href="/admin/dashboard">Dashboard</a>) },
@@ -30,36 +20,12 @@ const topMenu = [
 const Template:React.FC<{children: React.ReactNode}> = ({children}) => {
     const {state, dispatch} = useContext(LoginContext);
     const router = useRouter();
+
     
-    const handleTopMenu = async (e:any) => {
-        
-        // Handle logout
-        if(e.key==='logout'){
-            const response = await axios.get('/api/admin/logout');
-            console.log("Logout response: ", response);
-            dispatch({
-                type: "logout"
-            });
-            localStorage.removeItem("user");
-            router.push('/admin/login');
-        }
-    };
 
     return(
         <div className="nt-dashboard">
-            <Header className='grid grid-cols-12 nt-top'>
-                <div className="nt-brand col-span-2">
-                    <h1 className="nt-logo text-white">Logo</h1>
-                </div>
-                <Menu
-                    onClick={handleTopMenu}
-                    className='nt-top-menu col-span-10'
-                    theme="dark"
-                    mode="horizontal"
-                    defaultSelectedKeys={['2']}
-                    items={topMenu}
-                />
-            </Header>
+            
             {/* End top */}
             <Content style={{ padding: '0 50px' }}>
                 {/* <BreadCrumb/> */}
@@ -69,9 +35,6 @@ const Template:React.FC<{children: React.ReactNode}> = ({children}) => {
                     <div className="nt-aside col-span-2">
                         <Menu
                             mode="inline"
-                            // defaultSelectedKeys={['1']}
-                            // defaultOpenKeys={['sub1']}
-                            // style={{ height: '100%' }}
                             items={asideMenu}
                         />
                     </div>
@@ -82,7 +45,7 @@ const Template:React.FC<{children: React.ReactNode}> = ({children}) => {
                 
             </Content>
             {/* End main */}
-            <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
+            
             {/* End footer */}
         </div>
     );
