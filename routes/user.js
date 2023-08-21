@@ -26,19 +26,13 @@ router.post('/create', (req, res)=>{
 // Path:        /api/users/user/create
 // Method:      Post
 // Returns:     Succes/Failure message
-router.post('/user/create', (req, res) => {
+router.post('/user/create', async (req, res) => {
     try {
       const user = new User(req.body);
-      user.save().then((result) => {
-        res.json({
-          message: 'User created successfully!',
-          result
-        });
-      }).catch((err) => {
-        res.json({
-          message: 'User creation failed!',
-          err
-        });
+      const result = await user.save();
+      res.json({
+        message: "User successfully saved!",
+        result
       });
     } catch (err) {
       res.json({
