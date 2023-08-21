@@ -38,7 +38,7 @@ app.prepare().then(() => {
 
   // Route end points
   // Users
-  expressApp.use('/api/user', user);
+  expressApp.use('/api/users', user);
   expressApp.use('/api/admin', admin);
   
   // Currency

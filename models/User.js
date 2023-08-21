@@ -15,24 +15,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  role: {
-    type: String,
-    enum: ['admin', 'employee', 'customer'],
-    default: 'customer'
-  },
   profile: {
-    firstName: String,
-    lastName: String,
-    avatar: String,
+    name: String,
+    avatar: {
+      type: String,
+      default: "https://upload.wikimedia.org/wikipedia/commons/5/59/User-avatar.svg"
+    },
     phoneNumber: String,
     address: String
-  },
-  transactions: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Transaction'
-    }
-  ]
+  }
 }, {
   timestamps: true 
 });
