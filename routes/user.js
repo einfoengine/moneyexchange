@@ -1,5 +1,6 @@
 import express from 'express';
 import User from '../models/User.js';
+import jwt from 'jsonwebtoken';
 
 const router = express.Router();
 
@@ -47,12 +48,36 @@ router.post('/user/create', async (req, res) => {
 // Path:        /api/users/user/login
 // Method:      Post
 // Returns:     Succes/Failure message
-router.post('/user/login', (req, res)=>{
-    console.log("User login", req.body);
+router.post('/user/login', async (req, res)=>{
+    const {username, password} = req.body;
     try {
+        const user = await User.findOne({username: username, password: password});
+        if(user===null){
+            return res.status(401).json({
+                success: false,
+                message: "Invalid dredential"
+            });
+        }
+        user.password = undefined;
+        const payload = {
+            username,
+            name: user.profile.name,
+            role: 'user',
+            authenticated: true,
+            time: Date.now()
+        }
+        const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '6h' });
+        res.cookie("token", token, {
+            maxAge: 6 * 60 * 60 * 1000, // 6 hours in milliseconds
+            httpOnly: true,
+            secure: true, 
+            sameSite: "strict", // Restrict to same-site requests
+        });
         res.json({
-            data: req.body
-        })
+            suthenticated: true,
+            user: username,
+            token: token
+        });
     } catch (error) {
         console.log('Login error - ', error)
     }
@@ -63,13 +88,17 @@ router.post('/user/login', (req, res)=>{
 // Method:      Post
 // Returns:     Succes/Failure message
 router.get('/user/logout', (req, res)=>{
-    console.log("User logout: ");
     try {
+        res.clearCookie('token');
         res.json({
-            data: req.body
+            logout: true,
+            message: "User loged out successfully!"
         })
-    } catch (error) {
-        console.log('Login error - ', error)
+    } catch (err) {
+        res.json({
+            logout: false,
+            message: "Loged out failed!"
+        })
     }
 });
 
@@ -78,13 +107,18 @@ router.get('/user/logout', (req, res)=>{
 // Method:      Get
 // Returns:     Users object
 router.get('/find', (req, res)=>{
-    console.log("Find users");
     try {
+        const users = User.find();
         res.json({
-            data: req.body
+            message: "Users listed",
+            users
         })
-    } catch (error) {
-        console.log('Login error - ', error)
+    } catch (err) {
+        console.log('Login error - ', err)
+        res.status(404).res.json({
+            err,
+            message: "User not found!"
+        })
     }
 });
 
@@ -92,13 +126,10 @@ router.get('/find', (req, res)=>{
 // Path:        /api/users/user/find
 // Method:      Get
 // Returns:     Succes/Failure message
-router.get('/user/find', (req, res)=>{
-    console.log("Find user");
-    console.log();
+router.get('/user/find', async (req, res)=>{
     try {
-        res.json({
-            data: req.body
-        })
+        const user = await User.findOne(req.query);
+        res.json(user);
     } catch (error) {
         console.log('Login error - ', error)
     }

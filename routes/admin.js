@@ -36,7 +36,6 @@ router.post('/create', auth, async(req, res)=>{
 // Login
 router.post('/login', async (req, res) => {
     const { username, password, remember } = req.body;
-    console.log("Credentials: ", username, password);
     try {
         const admin = await Admin.findOne({ username });
         console.log("User: ", admin);

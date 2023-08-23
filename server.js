@@ -11,6 +11,7 @@ import cookieParser from 'cookie-parser';
 import user from './routes/user.js';
 import admin from './routes/admin.js';
 import currency from './routes/currency.js'
+import order from './routes/order.js'
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -46,6 +47,7 @@ app.prepare().then(() => {
   // Accounts
   // expressApp.use('/api/seller');
   // Orders
+  expressApp.use('/api/orders', order);
 
   // Test route
   expressApp.get('/api', (req, res) => {

@@ -21,7 +21,6 @@ router.get('/find', async (req, res)=>{
     }
 });
 
-export default router;
 
 // Update currency
 // Path:    /api/currencies/update
@@ -29,49 +28,51 @@ export default router;
 router.put('/update', auth,  async (req, res) => {
     try {
         const { _id, we_buy, we_sell, unit } = req.body;
-
+        
         console.log("Request body: ", req.body);
         console.log("_id: ", _id);
-
+        
         const updateObject = {
             we_buy,
             we_sell, 
             unit
         };
-
+        
         const response = await Currency.findOneAndUpdate(
             {_id: _id},
             { $set: updateObject },
             {new: true}
-        );
-      
-        if (response.modifiedCount === 0) {
-            return res.status(400).json({ error: 'No changes detected' });
-        }else{
-            console.log("Response: ", response);
+            );
+            
+            if (response.modifiedCount === 0) {
+                return res.status(400).json({ error: 'No changes detected' });
+            }else{
+                console.log("Response: ", response);
+            }
+            res.json({message: "Currency updated successfully!", response});
+        } catch (err) {
+            console.log('Error: Currency update failed -', err);
+            res.status(500).json({ error: 'Currency update failed' });
         }
-        res.json({message: "Currency updated successfully!", response});
-    } catch (err) {
-      console.log('Error: Currency update failed -', err);
-      res.status(500).json({ error: 'Currency update failed' });
-    }
-});
-
-// Insert many currency
-// Path:    /api/currencies/insertmany
-// Method:  Post
-router.post('/insertmany', async (req, res)=>{
-    try {
-        console.log("Request body: ", req.body);
-        const response = await Currency.insertMany(req.body);
-        console.log(response);
-        res.json({
-            message: "Successful",
-        });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({
-            err: err
-        })
-    }
-})
+    });
+    
+    // Insert many currency
+    // Path:    /api/currencies/insertmany
+    // Method:  Post
+    router.post('/insertmany', async (req, res)=>{
+        try {
+            console.log("Request body: ", req.body);
+            const response = await Currency.insertMany(req.body);
+            console.log(response);
+            res.json({
+                message: "Successful",
+            });
+        } catch (err) {
+            console.log(err);
+            res.status(500).json({
+                err: err
+            })
+        }
+    })
+    
+    export default router;
