@@ -63,8 +63,7 @@ router.post('/user/login', async (req, res)=>{
             username,
             name: user.profile.name,
             role: 'user',
-            authenticated: true,
-            time: Date.now()
+            authenticated: true
         }
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '6h' });
         res.cookie("token", token, {
@@ -72,11 +71,13 @@ router.post('/user/login', async (req, res)=>{
             httpOnly: true,
             secure: true, 
             sameSite: "strict", // Restrict to same-site requests
+            accessLevel: 'user'
         });
         res.json({
-            suthenticated: true,
+            authenticated: true,
             user: username,
-            token: token
+            token: token,
+            accessLevel: 'user'
         });
     } catch (error) {
         console.log('Login error - ', error)

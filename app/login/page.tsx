@@ -4,7 +4,7 @@ import Section from "@/components/section";
 import Login from "@/components/Login";
 
 const LoginPage = () => {
-    const path = '/api/user/login';
+    const path = '/api/users/user/login';
     return(
         <Client>
             <main>

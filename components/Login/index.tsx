@@ -1,9 +1,13 @@
 'use client'
 
+import { useContext, useEffect } from "react";
 import axios from "axios";
 
 import { Button, Checkbox, Form, Input } from "antd";
 
+import { LoginContext } from "@/Context";
+import { useRouter } from "next/navigation";
+import router from "@/routes/buyer";
 
 
 type FieldType = {
@@ -13,9 +17,27 @@ type FieldType = {
 };
 
 const Login = ({path}:{path: string} ) => {
+    const router = useRouter();
+    const {state, dispatch} = useContext(LoginContext);
+    useEffect(()=>{
+        if(state.authenticated===true){
+            router.push('/admin');
+        }
+    }, [state])
     const onFinish = async (values: any) => {
         try {
-            const result = await axios.post(path, values);
+            const {data} = await axios.post(path, values);
+            if(data.authenticated===true){
+                dispatch({
+                    type: "login",
+                    payload: data
+                });
+                localStorage.setItem(
+                    'user',
+                    JSON.stringify(data)
+                );
+            }
+            console.log("User ", data);
         } catch (error) {
             console.error('Error:', error);
         }

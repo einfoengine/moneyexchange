@@ -38,7 +38,6 @@ router.post('/login', async (req, res) => {
     const { username, password, remember } = req.body;
     try {
         const admin = await Admin.findOne({ username });
-        console.log("User: ", admin);
         if (!admin) {
             return res.status(401).json({
                 success: false,
@@ -56,7 +55,11 @@ router.post('/login', async (req, res) => {
 
         const payload = {
             username: admin.username,
-            role: 'admin'
+            role: 'admin',
+            is_superuser: admin.is_superuser,
+            access_lavel: admin.access_level,
+            avatar: admin.avatar,
+            designation: admin.designation
         };
 
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '6h' });
