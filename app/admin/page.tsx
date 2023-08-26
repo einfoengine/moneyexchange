@@ -17,11 +17,7 @@ const Login = () => {
     const router = useRouter();
     const {state, dispatch} = useContext(LoginContext);
 
-    if(state.authenticated===true){
-        router.push('/admin/dashboard');
-    }
-    // useEffect(()=>{
-    // },[state]);
+    if(state.authenticated===true){router.push('/admin/dashboard')}
     
     const onFinish = async (values: any) => {
         const {data} = await axios.post('http://localhost:3000/api/auth/admin', values);

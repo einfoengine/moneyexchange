@@ -21,7 +21,7 @@ const Login = ({path}:{path: string} ) => {
     const {state, dispatch} = useContext(LoginContext);
     useEffect(()=>{
         if(state.authenticated===true){
-            router.push('/admin');
+            router.push('/dashboard');
         }
     }, [state])
     const onFinish = async (values: any) => {

@@ -1,5 +1,5 @@
 import { Calendar } from "antd";
-import Chart from '../../../components/Chart'
+import Chart from '../../../components/Chart';
 
 const Dashboard = () => {
     return(

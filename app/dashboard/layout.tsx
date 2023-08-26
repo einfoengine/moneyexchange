@@ -7,7 +7,7 @@ import axios from 'axios';
 const { Header, Footer } = Layout;
 
 const topMenu = [
-    { key: 'home', label: 'Dashboard'},
+    { key: 'home', label: 'home',},
     { key: 'about', label: 'Settings'},
     { key: 'contact', label: 'Tasks'},
     { key: 'contact', label: 'Accounts'},
@@ -16,27 +16,17 @@ const topMenu = [
 ];
 
 export default function RootLayout({children}: {children: React.ReactNode}){
-    // const {state, dispatch} = useContext(LoginContext);
-    // const router = useRouter();
-    // if(state.user===null){
-    //     router.push("/admin/login")
-    //     return(
-    //         <div>
-    //             <h3>Authentication failed please login</h3>
-    //         </div>
-    //     )
-    // }
+    const {state, dispatch} = useContext(LoginContext);
+    const router = useRouter();
     const handleTopMenu = async (e:any) => {
         console.log(e.key);
         if(e.key==='logout'){
-            console.log(localStorage.getItem("user"))
-            const response = await axios.get('/api/admin/logout');
-            console.log("Logout response: ", response);
-            // dispatch({
-            //     type: "logout"
-            // });
+            const response = await axios.get('/api/users/user/logout');
+            dispatch({
+                type: "logout"
+            });
             localStorage.removeItem("user");
-            // router.push('/admin/login');
+            router.push('/');
         }
     };
     return (
