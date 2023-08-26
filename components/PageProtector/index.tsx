@@ -14,6 +14,9 @@ const PageProtector = () => {
         if(decode.role!=='admin'){
             router.push('/');
         }
+        if(decode.role!=='user'){
+            router.push('/');
+        }
     }
 }
 export default PageProtector;

@@ -1,21 +1,25 @@
 'use client'
+import axios from 'axios';
 import {Layout, Menu } from 'antd';
 import {LoginContext} from '@/Context'
 import { useContext } from 'react';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
+import Link from 'next/link';
+import PageProtector from '@/components/PageProtector';
+
 const { Header, Footer } = Layout;
 
 const topMenu = [
-    { key: 'home', label: 'home',},
-    { key: 'about', label: 'Settings'},
-    { key: 'contact', label: 'Tasks'},
-    { key: 'contact', label: 'Accounts'},
-    { key: 'contact', label: 'Site'},
+    { key: 'home', label: <Link href={"/"}>Home</Link>,},
+    // { key: 'about', label: 'Settings'},
+    // { key: 'contact', label: 'Tasks'},
+    // { key: 'contact', label: 'Accounts'},
+    // { key: 'contact', label: 'Site'},
     { key: 'logout', label: 'Logout'}
 ];
 
 export default function RootLayout({children}: {children: React.ReactNode}){
+    PageProtector();
     const {state, dispatch} = useContext(LoginContext);
     const router = useRouter();
     const handleTopMenu = async (e:any) => {
