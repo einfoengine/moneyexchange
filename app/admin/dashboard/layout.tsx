@@ -4,7 +4,7 @@ import {LoginContext} from '@/Context'
 import { useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-import PageProtector from '@/components/PageProtector';
+// import PageProtector from '@/components/PageProtector';
 const { Header, Footer } = Layout;
 
 const topMenu = [
@@ -17,7 +17,7 @@ const topMenu = [
 ];
 
 export default function RootLayout({children}: {children: React.ReactNode}){
-    PageProtector();
+    // PageProtector();
     const {state, dispatch} = useContext(LoginContext);
     const router = useRouter();
     if(state.user===null){
