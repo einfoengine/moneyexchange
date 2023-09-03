@@ -5,7 +5,7 @@ import axios from "axios";
 
 import { Button, Checkbox, Form, Input } from "antd";
 
-import { LoginContext } from "@/Context";
+import { adminContext } from "@/Context";
 import { useRouter } from "next/navigation";
 import router from "@/routes/buyer";
 
@@ -18,7 +18,7 @@ type FieldType = {
 
 const Login = ({path}:{path: string} ) => {
     const router = useRouter();
-    const {state, dispatch} = useContext(LoginContext);
+    const {state, dispatch} = useContext(adminContext);
     useEffect(()=>{
         if(state.authenticated===true){
             router.push('/dashboard');

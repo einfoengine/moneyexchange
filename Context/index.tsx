@@ -23,7 +23,7 @@ const initialState: UserState = {
 
 // Create context
 // Create context
-const LoginContext = createContext<{ state: UserState, dispatch: React.Dispatch<UserAction> }>({ state: initialState, dispatch: () => {} });
+const adminContext = createContext<{ state: UserState, dispatch: React.Dispatch<UserAction> }>({ state: initialState, dispatch: () => {} });
 // Reducer function
 const userReducer = (state: UserState, action: UserAction): UserState => {
   switch (action.type) {
@@ -42,7 +42,7 @@ const userReducer = (state: UserState, action: UserAction): UserState => {
 
 // Login context provider
 // This provides the current state and dispatch function
-const LoginProvider: React.FC<{children: ReactNode}>=({children})=>{
+const AdminProvider: React.FC<{children: ReactNode}>=({children})=>{
     const [state, dispatch] = useReducer(userReducer, initialState);
 
     useEffect(()=>{
@@ -56,10 +56,10 @@ const LoginProvider: React.FC<{children: ReactNode}>=({children})=>{
         }
     },[]);
     return(
-        <LoginContext.Provider value={{state, dispatch}}>
+        <adminContext.Provider value={{state, dispatch}}>
             {children}
-        </LoginContext.Provider>
+        </adminContext.Provider>
     )
 }
 
-export { LoginProvider,  LoginContext};
+export { AdminProvider,  adminContext};

@@ -1,7 +1,7 @@
 'use client'
 import axios from 'axios';
 import {Layout, Menu } from 'antd';
-import {LoginContext} from '@/Context'
+import {adminContext} from '@/Context'
 import { useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -20,7 +20,7 @@ const topMenu = [
 
 export default function RootLayout({children}: {children: React.ReactNode}){
     // PageProtector();
-    const {state, dispatch} = useContext(LoginContext);
+    const {state, dispatch} = useContext(adminContext);
     const router = useRouter();
     const handleTopMenu = async (e:any) => {
         console.log(e.key);

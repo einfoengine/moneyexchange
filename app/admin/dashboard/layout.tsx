@@ -1,6 +1,6 @@
 'use client'
 import {Layout, Menu } from 'antd';
-import {LoginContext} from '@/Context'
+import {adminContext} from '@/Context'
 import { useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
@@ -18,7 +18,7 @@ const topMenu = [
 
 export default function RootLayout({children}: {children: React.ReactNode}){
     // PageProtector();
-    const {state, dispatch} = useContext(LoginContext);
+    const {state, dispatch} = useContext(adminContext);
     const router = useRouter();
     if(state.user===null){
         router.push("/admin/login")

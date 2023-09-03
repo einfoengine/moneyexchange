@@ -3,10 +3,10 @@
 import { useContext, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { LoginContext } from '@/Context';
+import { adminContext } from '@/Context';
 
 const MainNav = () => {
-  const {state, dispatch} = useContext(LoginContext);
+  const {state, dispatch} = useContext(adminContext);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const pathname = usePathname();
 
