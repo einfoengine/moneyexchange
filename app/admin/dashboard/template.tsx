@@ -1,7 +1,5 @@
 'use client'
 import { Breadcrumb, Layout, Menu, Divider } from 'antd';
-import {adminContext} from '@/Context'
-import { useContext } from 'react';
 import { useRouter } from 'next/navigation';
 const { Content} = Layout;
 
@@ -18,7 +16,6 @@ const { Content} = Layout;
   ];
 
 const Template:React.FC<{children: React.ReactNode}> = ({children}) => {
-    const {state, dispatch} = useContext(adminContext);
     const router = useRouter();
 
     

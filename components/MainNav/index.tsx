@@ -1,12 +1,10 @@
 'use client'
 
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { adminContext } from '@/Context';
 
 const MainNav = () => {
-  const {state, dispatch} = useContext(adminContext);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const pathname = usePathname();
 
@@ -18,7 +16,6 @@ const MainNav = () => {
     setShowLoginModal(false);
   };
 
-  console.log("Login state ", state);
 
   return (
     <section className="nt-header mx-auto left-0 right-0">

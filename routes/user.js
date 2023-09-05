@@ -60,25 +60,20 @@ router.post('/user/login', async (req, res)=>{
         }
         user.password = undefined;
         const payload = {
+            _id: user._id,
             username,
-            name: user.profile.name,
             role: 'user',
-            authenticated: true
+            avatar: user.profile.avatar,
+            authenticated: true,
         }
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '6h' });
-        res.cookie("token", token, {
+        res.cookie("usertoken", token, {
             maxAge: 6 * 60 * 60 * 1000, // 6 hours in milliseconds
             httpOnly: true,
             secure: true, 
             sameSite: "strict", // Restrict to same-site requests
-            accessLevel: 'user'
         });
-        res.json({
-            authenticated: true,
-            user: username,
-            token: token,
-            accessLevel: 'user'
-        });
+        res.json(payload);
     } catch (error) {
         console.log('Login error - ', error)
     }

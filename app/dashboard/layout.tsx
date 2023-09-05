@@ -1,8 +1,6 @@
 'use client'
 import axios from 'axios';
 import {Layout, Menu } from 'antd';
-import {adminContext} from '@/Context'
-import { useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 // import PageProtector from '@/components/PageProtector';
@@ -20,15 +18,12 @@ const topMenu = [
 
 export default function RootLayout({children}: {children: React.ReactNode}){
     // PageProtector();
-    const {state, dispatch} = useContext(adminContext);
     const router = useRouter();
     const handleTopMenu = async (e:any) => {
         console.log(e.key);
         if(e.key==='logout'){
             const response = await axios.get('/api/users/user/logout');
-            dispatch({
-                type: "logout"
-            });
+            
             localStorage.removeItem("user");
             router.push('/');
         }

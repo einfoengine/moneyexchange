@@ -3,7 +3,7 @@ import './globals.css'
 import '../styles/global.scss'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { AdminProvider } from '@/Context'
+// import { AdminProvider } from '@/Context'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,12 +19,13 @@ export default function RootLayout({
     children: React.ReactNode
   }){
   return (
-    <AdminProvider>
+    // <AdminProvider>
       <html lang="en">
         <body className={inter.className}>
+          Hello
           {children}
         </body>
       </html>
-    </AdminProvider>
+    // </AdminProvider>
   )
 }

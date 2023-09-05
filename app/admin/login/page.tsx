@@ -2,8 +2,6 @@
 
 import axios from "axios";
 import { Button, Checkbox, Form, Input } from "antd";
-import { adminContext } from '@/Context';
-import { useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 
@@ -15,23 +13,11 @@ type FieldType = {
 
 const Login = () => {
     const router = useRouter();
-    const {state, dispatch} = useContext(adminContext);
 
-    useEffect(()=>{
-        if(state.authenticated===true){
-            router.push('/admin');
-        }
-    },[state]);
-    
     const onFinish = async (values: any) => {
         const {data} = await axios.post('http://localhost:3000/api/admin/login', values);
-        data.usertype = "admin";
-        dispatch({
-            type: 'login',
-            payload: data
-        });
-        localStorage.setItem('user', JSON.stringify(data));
-        if(data.authenticated===true){
+        localStorage.setItem('admin', JSON.stringify(data));
+        if(data.authenticated===true && data.role==='admin'){
             router.push('/admin');
         }
         console.log("Login data ", data);
@@ -40,7 +26,6 @@ const Login = () => {
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
     };
-    console.log("User context ", state);
     return(
         <div className="nt-dashboard">
             <div className="nt-login border w-2/5 mx-auto mt-5 rounded p-5">

@@ -55,27 +55,25 @@ router.post('/login', async (req, res) => {
 
         const payload = {
             username: admin.username,
+            _id: admin._id,
             role: 'admin',
             is_superuser: admin.is_superuser,
             access_lavel: admin.access_level,
             avatar: admin.avatar,
-            designation: admin.designation
+            designation: admin.designation, 
+            authenticated: true
         };
 
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '6h' });
 
-        res.cookie("token", token, {
+        res.cookie("admintoken", token, {
             maxAge: 6 * 60 * 60 * 1000, // 6 hours in milliseconds
             httpOnly: true,
             secure: true, 
             sameSite: "strict", // Restrict to same-site requests
         });
 
-        res.json({
-            authenticated: true,
-            user: admin.username,
-            token: token
-        });
+        res.json(payload);
     } catch (err) {
         console.log("Error - authentication failed: ", err);
         res.status(500).json({
