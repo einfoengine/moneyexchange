@@ -84,8 +84,9 @@ router.post('/user/login', async (req, res)=>{
 // Method:      Post
 // Returns:     Succes/Failure message
 router.get('/user/logout', (req, res)=>{
+    console.log("Logout rout")
     try {
-        res.clearCookie('token');
+        res.clearCookie('usertoken');
         res.json({
             logout: true,
             message: "User loged out successfully!"

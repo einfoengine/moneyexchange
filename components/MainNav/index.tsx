@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { UserContext } from '@/Context';
+import axios from 'axios';
 
 const MainNav = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -13,6 +14,15 @@ const MainNav = () => {
   const handleLoginModalOpen = () => {
     setShowLoginModal(true);
   };
+  const handleLogout = async () => {
+    try {
+      const response = await axios.get("/api/users/user/logout");
+      dispatch({type:"logout"});
+      localStorage.removeItem("user");
+    } catch (err) {
+      console.log("User logout failed ", err);
+    }
+  }
 
   const handleLoginModalClose = () => {
     setShowLoginModal(false);
@@ -46,12 +56,11 @@ const MainNav = () => {
                   <li className={`px-3 ${pathname === 'services' && 'active'}`}>
                     <Link href="/services">Services</Link>
                   </li>
-                  <li className={`px-3 cursor-pointer`} onClick={handleLoginModalOpen}>
-                    {state.role==="user"&&<Link href={'/login'}>logout</Link>}
-                  </li>
-                  <li className={`px-3 cursor-pointer`} onClick={handleLoginModalOpen}>
-                    <Link href={'/register'}>Signup</Link>
-                  </li>
+                  {state.role==="user"?
+                    <li className={`px-3 cursor-pointer`} onClick={handleLogout}>Logout</li>:
+                    <li className='px-3 cursor-pointer'><Link href={'/login'}>Login</Link></li>
+                  }
+                  {state.role!=='user'&&<li className={`px-3 cursor-pointer`}><Link href={'/register'}>Signup</Link></li>}
                   {state.username&&<li className='border rounded px-3'>{state.username}</li>}
                 </ul>
               </div>
