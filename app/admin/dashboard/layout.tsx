@@ -2,6 +2,8 @@
 import {Layout, Menu } from 'antd';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import { useContext, useEffect } from 'react';
+import { AdminContext } from '@/Context';
 // import PageProtector from '@/components/PageProtector';
 const { Header, Footer } = Layout;
 
@@ -15,16 +17,14 @@ const topMenu = [
 ];
 
 export default function RootLayout({children}: {children: React.ReactNode}){
-    // PageProtector();
+    const {state,dispatch} = useContext(AdminContext);
     const router = useRouter();
-    
+
     const handleTopMenu = async (e:any) => {
-        console.log(e.key);
         if(e.key==='logout'){
-            console.log(localStorage.getItem("user"))
             const response = await axios.get('/api/admin/logout');
-            console.log("Logout response: ", response);
-            localStorage.removeItem("user");
+            dispatch({type:"logout"});
+            localStorage.removeItem("admin");
             router.push('/admin/login');
         }
     };

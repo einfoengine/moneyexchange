@@ -4,6 +4,9 @@ import axios from "axios";
 import { Button, Checkbox, Form, Input } from "antd";
 import { useRouter } from "next/navigation";
 
+import { AdminContext } from "@/Context";
+import { useContext, useEffect } from "react";
+
 
 type FieldType = {
     username?: string;
@@ -13,14 +16,21 @@ type FieldType = {
 
 const Login = () => {
     const router = useRouter();
+    const {state, dispatch} = useContext(AdminContext);
+    
+    useEffect(()=>{
+        console.log("Admin state ", state);
+        if(state.role==="admin"){
+            router.push("/admin/dashboard")
+        }
+    },[state])
 
     const onFinish = async (values: any) => {
         const {data} = await axios.post('http://localhost:3000/api/admin/login', values);
         localStorage.setItem('admin', JSON.stringify(data));
         if(data.authenticated===true && data.role==='admin'){
-            router.push('/admin');
+            dispatch({type:"login", payload: data})
         }
-        console.log("Login data ", data);
     };
     
     const onFinishFailed = (errorInfo: any) => {

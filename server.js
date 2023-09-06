@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import morgan from 'morgan';
 import next from 'next';
-import auth from './middleware/auth.js'
+import {adminauth} from './middleware/auth.js'
 import cookieParser from 'cookie-parser';
 
 

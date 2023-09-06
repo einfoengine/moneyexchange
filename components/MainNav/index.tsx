@@ -1,11 +1,13 @@
 'use client'
 
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { UserContext } from '@/Context';
 
 const MainNav = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const {state, dispatch} = useContext(UserContext);
   const pathname = usePathname();
 
   const handleLoginModalOpen = () => {
@@ -16,6 +18,9 @@ const MainNav = () => {
     setShowLoginModal(false);
   };
 
+  useEffect(()=>{
+    console.log("User state", state);
+  },[state])
 
   return (
     <section className="nt-header mx-auto left-0 right-0">
@@ -42,11 +47,12 @@ const MainNav = () => {
                     <Link href="/services">Services</Link>
                   </li>
                   <li className={`px-3 cursor-pointer`} onClick={handleLoginModalOpen}>
-                    <Link href={'/login'}>Login</Link>
+                    {state.role==="user"&&<Link href={'/login'}>logout</Link>}
                   </li>
                   <li className={`px-3 cursor-pointer`} onClick={handleLoginModalOpen}>
                     <Link href={'/register'}>Signup</Link>
                   </li>
+                  {state.username&&<li className='border rounded px-3'>{state.username}</li>}
                 </ul>
               </div>
             </div>

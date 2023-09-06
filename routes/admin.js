@@ -1,7 +1,7 @@
 import express from "express";
 import Admin from '../models/Admin.js';
 import jwt from 'jsonwebtoken';
-import auth from "../middleware/auth.js";
+import {adminauth} from "../middleware/auth.js";
 
 const router = express.Router();
 
@@ -9,7 +9,7 @@ const router = express.Router();
 // Method:  Post
 
 // Create
-router.post('/create', auth, async(req, res)=>{
+router.post('/create', adminauth, async(req, res)=>{
     const {username, password, is_superuser, access_lavel, can_create_admin, designation, avatar} = req.body;
 
     const response = await Admin.find({ is_superuser: true });
@@ -84,9 +84,9 @@ router.post('/login', async (req, res) => {
 });
 
 // Logout
-router.get('/logout', auth, async(req, res)=>{
+router.get('/logout', adminauth, async(req, res)=>{
     try {
-        res.clearCookie('token');
+        res.clearCookie('admintoken');
         res.json({
             message: "Success: logout",
         });

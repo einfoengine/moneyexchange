@@ -1,12 +1,10 @@
 'use client'
-
-import {  useEffect } from "react";
 import axios from "axios";
-
 import { Button, Checkbox, Form, Input } from "antd";
 
 import { useRouter } from "next/navigation";
-import router from "@/routes/buyer";
+import { UserContext } from "@/Context";
+import { useContext, useEffect } from "react";
 
 
 type FieldType = {
@@ -17,11 +15,19 @@ type FieldType = {
 
 const Login = ({path}:{path: string} ) => {
     const router = useRouter();
+    const {state, dispatch} = useContext(UserContext);
+    useEffect(()=>{
+        console.log("User context state ", state);
+        if(state?.role==="user"){
+            router.push("/")
+        }
+    },[state]);
     
     const onFinish = async (values: any) => {
         try {
             const {data} = await axios.post(path, values);
-            if(data.authenticated===true){
+            if(data.authenticated===true && data.role==='user'){
+                dispatch({type: 'login', payload: data})
                 localStorage.setItem(
                     'user',
                     JSON.stringify(data)
@@ -38,7 +44,6 @@ const Login = ({path}:{path: string} ) => {
     };
     return(
         <>
-        
             <div className="nt-login nt-component">
                     <div className="nt-login border w-2/5 mx-auto mt-5 rounded p-5">
                         <h3 className="text-lg">Login</h3>

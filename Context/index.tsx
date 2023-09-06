@@ -1,4 +1,5 @@
-import React, { createContext, useReducer, useContext } from 'react';
+'use client'
+import React, { createContext, useReducer, useContext, useEffect } from 'react';
 
 // Define the shape of the state
 interface UserState {
@@ -42,7 +43,7 @@ const adminReducer = (state: UserState, action: { type: string; payload?: UserSt
     case 'login':
       return action.payload || initialAdminState; 
     case 'logout':
-      return initialUserState;
+      return initialAdminState;
     default:
       return state;
   }
@@ -51,32 +52,46 @@ const adminReducer = (state: UserState, action: { type: string; payload?: UserSt
 const userReducer = (state: UserState, action: {type: string; payload?: UserState}) => {
     switch (action.type) {
         case 'login':
-            return action.payload || initialUserState;
+          return action.payload || initialUserState;
         case 'logout':
-            return initialUserState
-            default:
-                return state;
+          return initialUserState
+        default:
+          return state;
     }
 }
 
 export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [state, dispatch] = useReducer(adminReducer, initialAdminState);
+  const [state, dispatch] = useReducer(adminReducer, initialAdminState);
+  useEffect(()=>{
+    const localAdmin = JSON.parse(localStorage.getItem("admin"));
+    if(localAdmin?.role==="admin"){
+        dispatch({type:"login", payload: localAdmin})
+      }
+    },[]);
   
-    return (
-      <AdminContext.Provider value={{ state, dispatch }}>
-        {children}
-      </AdminContext.Provider>
-    );
+  return (
+    <AdminContext.Provider value={{ state, dispatch }}>
+      {children}
+    </AdminContext.Provider>
+  );
 };
 
 export const UserProvider: React.FC<{children: React.ReactNode}> = ({children}) => {
-    const [state, dispatch] = useReducer(userReducer, initialUserState);
+  const [state, dispatch] = useReducer(userReducer, initialUserState);
+  
+  useEffect(()=>{
+    const localUser = JSON.parse(localStorage.getItem("user"));
+    console.log("Local user ",localUser)
+    if(localUser?.role==='user'){
+      dispatch({type:"login", payload: localUser})
+    }
+  },[]);
 
-    return (
-        <UserContext.Provider value={{state, dispatch}}>
-            {children}
-        </UserContext.Provider>
-    )   
+  return (
+    <UserContext.Provider value={{state, dispatch}}>
+        {children}
+    </UserContext.Provider>
+  )   
 }
 
 export {AdminContext, UserContext}

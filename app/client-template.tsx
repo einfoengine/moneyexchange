@@ -5,7 +5,7 @@ const Client = ({children}:{children: React.ReactNode}) => {
     return(
         <>
             <MainNav/>
-                {children}
+            {children}
             <Footer/>
         </>
     )

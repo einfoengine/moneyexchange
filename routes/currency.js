@@ -4,7 +4,7 @@ import Currency from '../models/Currency.js';
 import * as mongoose from 'mongoose';
 const router = express.Router();
 
-import auth from '../middleware/auth.js'
+import {adminauth} from '../middleware/auth.js'
 
 // Find currency
 // Path:    /api/currencies/find
@@ -25,7 +25,7 @@ router.get('/find', async (req, res)=>{
 // Update currency
 // Path:    /api/currencies/update
 // Method:  put
-router.put('/update', auth,  async (req, res) => {
+router.put('/update', adminauth,  async (req, res) => {
     try {
         const { _id, we_buy, we_sell, unit } = req.body;
         
