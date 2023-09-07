@@ -1,13 +1,18 @@
 'use client'
 
-import React, { useState, useRef, useMemo } from "react";
+import axios from "axios";
+import React, { useState } from "react";
+import { useContext } from "react";
+import { UserContext } from "@/Context";
 
 interface CurrencyDataItem {
-  code: string;
-  flag: string;
-  we_buy: number;
-  we_sell: number;
-  unit: number
+  code?: string;
+  flag?: string;
+  we_buy?: number;
+  we_sell?: number;
+  unit?: number,
+  _id?: string,
+  rate?: number
 }
 
 interface ComponentProps {
@@ -16,10 +21,27 @@ interface ComponentProps {
   data: CurrencyDataItem[];
 }
 
-const MoneyConverter: React.FC<ComponentProps> = ({ className, functionType, data }) => {
-    const [rate, setRate] = useState(0);
-    const [amount, setAmount] = useState(0);
 
+
+const MoneyConverter: React.FC<ComponentProps> = ({ className, functionType, data }) => {
+  const {state} = useContext(UserContext);
+  const [rate, setRate] = useState(0);
+  const [amount, setAmount] = useState(0);
+  const [currency, setCurrency] = useState();
+  const order = {
+    user: state._id,  
+    currency: currency, 
+    type: functionType,
+    amount: amount,
+    rate: rate,
+    total: rate * amount,
+    status: "pending"   
+  }
+  
+  const handleSUbmit = (e:any) => {
+    e.preventDefault();
+    axios.post('/api/orders/create', order)
+  }
   return (
     <div className={`nt-money-converter nt-component ${className}`}>
       <form>
@@ -30,12 +52,16 @@ const MoneyConverter: React.FC<ComponentProps> = ({ className, functionType, dat
             </label>
             <div className="border rounded p-1 flex">
               <input type="number" className="grow" defaultValue={0} onChange={(e)=>{setAmount(parseFloat(e.target.value))}}/>
-              <select name="nt-currency-select" onChange={(e)=>{setRate(parseFloat(e.target.value))}}>
+              <select name="nt-currency-select" onChange={(e)=>{
+                setRate(parseFloat(e.target.selectedOptions[0].getAttribute('data-rate')));
+                setCurrency(e.target.value);
+                }}>
                 <option key="select-currency" value={0}>Currency</option>
                 {data.map((item, index) => (
                   <option
                     key={`nt-country-${index}`}
-                    value={item.we_sell}
+                    value={item._id}
+                    data-rate={functionType==='sell'?item.we_buy: item.we_sell}
                   >
                     {item.flag} {item.code}
                   </option>
@@ -48,7 +74,7 @@ const MoneyConverter: React.FC<ComponentProps> = ({ className, functionType, dat
           </div>
         </div>
         {/*  */}
-        <button className="bg-black text-white rounded py-2 px-4 mx-auto flex mt-3" type="submit">
+        <button className="bg-black text-white rounded py-2 px-4 mx-auto flex mt-3" type="submit" onClickCapture={handleSUbmit}>
           Order
         </button>
       </form>

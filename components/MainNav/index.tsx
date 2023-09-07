@@ -61,7 +61,7 @@ const MainNav = () => {
                     <li className='px-3 cursor-pointer'><Link href={'/login'}>Login</Link></li>
                   }
                   {state.role!=='user'&&<li className={`px-3 cursor-pointer`}><Link href={'/register'}>Signup</Link></li>}
-                  {state.username&&<li className='border rounded px-3'>{state.username}</li>}
+                  {state.username&&<li className='border rounded px-3'><Link href={'/dashboard'}>{state.username}</Link></li>}
                 </ul>
               </div>
             </div>

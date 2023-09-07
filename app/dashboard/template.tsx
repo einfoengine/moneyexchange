@@ -6,12 +6,9 @@ const { Content} = Layout;
 
   const asideMenu = [
     { key: 'dashboard', label: (<a href="/admin/dashboard">Dashboard</a>) },
-    { key: 'orders', label: (<a href="/admin/dashboard/orders">Orders</a>) },
-    { key: 'transactions', label: (<a href="/admin/dashboard/transections">Transactions</a>) },
-    { key: 'price', label: (<a href="/admin/dashboard/price">Price</a>) },
-    { key: 'message', label: (<a href="/admin/dashboard/inbox">Message</a>) },
-    { key: 'users', label: (<a href="/admin/dashboard/users">Users</a>) },
-    { key: 'profile', label: 'Profile' },
+    { key: 'orders', label: (<a href="/dashboard/orders">Orders</a>) },
+    { key: 'transactions', label: (<a href="/dashboard/transections">Transactions</a>) },
+    { key: 'message', label: (<a href="/dashboard/inbox">Message</a>) },
   ];
 
 const Template:React.FC<{children: React.ReactNode}> = ({children}) => {
@@ -38,7 +35,7 @@ const Template:React.FC<{children: React.ReactNode}> = ({children}) => {
                         {children}
                     </div>
                 </div>
-                
+                hello
             </Content>
             {/* End main */}
             
