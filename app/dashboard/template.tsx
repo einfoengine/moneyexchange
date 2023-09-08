@@ -5,7 +5,7 @@ const { Content} = Layout;
 
 
   const asideMenu = [
-    { key: 'dashboard', label: (<a href="/admin/dashboard">Dashboard</a>) },
+    { key: 'dashboard', label: (<a href="/dashboard">Dashboard</a>) },
     { key: 'orders', label: (<a href="/dashboard/orders">Orders</a>) },
     { key: 'transactions', label: (<a href="/dashboard/transections">Transactions</a>) },
     { key: 'message', label: (<a href="/dashboard/inbox">Message</a>) },
