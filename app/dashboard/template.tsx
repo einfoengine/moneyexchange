@@ -35,7 +35,6 @@ const Template:React.FC<{children: React.ReactNode}> = ({children}) => {
                         {children}
                     </div>
                 </div>
-                hello
             </Content>
             {/* End main */}
             

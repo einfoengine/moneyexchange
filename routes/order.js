@@ -1,5 +1,5 @@
 import exporess from "express";
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 
 import Order from '../models/Order.js'
 import History from '../models/History.js'
@@ -7,8 +7,14 @@ import History from '../models/History.js'
 const router = exporess.Router();
 
 // Test route 
-router.get('/', (req, res)=>{
-    res.send("Order route");
+router.get('/', async (req, res)=>{
+    try {
+        const orders = await Order.find({user: req.query.user}).populate("currency").populate("user");
+        console.log(orders)
+        res.json(orders)        
+    } catch (error) {
+        res.send("Failed orders find error!")
+    }
 });
 
 // Create orders

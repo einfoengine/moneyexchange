@@ -2,16 +2,17 @@
 // pages/index.js
 import { Layout } from 'antd';
 import OrdersTable from '@/components/OrdersTable';
+// import { useEffect, useState } from 'react';
+// import axios from 'axios';
 
-const { Content } = Layout;
+// const { Content } = Layout;
 
 const Orders = () => {
   return (
     <Layout>
-      <Content style={{ padding: '50px', background: '#fff' }}>
-        <h1>Orders Table</h1>
+      {/* <Content> */}
         <OrdersTable/>
-      </Content>
+      {/* </Content> */}
     </Layout>
   );
 };
