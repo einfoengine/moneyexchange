@@ -1,9 +1,11 @@
 'use client'
 import {Layout, Menu } from 'antd';
 import { useRouter } from 'next/navigation';
+import Link from "next/link"
 import axios from 'axios';
 import { useContext, useEffect } from 'react';
 import { AdminContext } from '@/Context';
+
 // import PageProtector from '@/components/PageProtector';
 const { Header, Footer } = Layout;
 
@@ -32,7 +34,7 @@ export default function RootLayout({children}: {children: React.ReactNode}){
             <div>
                 <Header className='grid grid-cols-12 nt-top'>
                     <div className="nt-brand col-span-2">
-                        <h1 className="nt-logo text-white">Logo</h1>
+                        <h1 className="nt-logo text-white"><Link href={'/'} >Logo</Link></h1>
                     </div>
                     <Menu
                         onClick={handleTopMenu}

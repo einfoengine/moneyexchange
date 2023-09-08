@@ -9,23 +9,11 @@ const transactionSchema = new mongoose.Schema({
     type: {
         type: String,
         required: true, 
-        enum: ['buy', 'sell']
+        enum: ['buy', 'sell', 'cancel']
     },
-    cancel: {
-        type: Boolean,
-        required: false
-    },
-    amount: {
-        type: Number,
-        required: true,
-    },
-    currency: {
-        type: String,
-        required: true
-    },
-    status: {
-        type: String,
-        enum: ['approved', 'rejected', 'pending'],
+    order_id:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Order',
         required: true
     }
 }, {

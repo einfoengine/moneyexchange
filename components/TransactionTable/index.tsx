@@ -3,19 +3,18 @@
 import React from 'react';
 import { Table } from 'antd';
 
-const data = [
-  {
-    date: '2023-08-03',
-    customerId: 'C001',
-    customerName: 'John Doe',
-    phoneNumber: '+1234567890',
-    transactionCount: 3,
-    orderType: 'Online',
-    orderAmount: 150,
-    orderCurrency: 'USD',
-  },
-  // Add more data rows as needed
-];
+// const data = [
+//   {
+//     date: '2023-08-03',
+//     email: 'C001',
+//     customerName: 'John Doe',
+//     orderType: 'buy',
+//     orderCurrency: 'USD',
+//     orderUnit: 150,
+//     localAmount: 150,
+//   },
+//   // Add more data rows as needed
+// ];
 
 const columns = [
   {
@@ -35,10 +34,6 @@ const columns = [
     dataIndex: 'phoneNumber',
   },
   {
-    title: 'Transaction Count',
-    dataIndex: 'transactionCount',
-  },
-  {
     title: 'Order Type',
     dataIndex: 'orderType',
   },
@@ -52,8 +47,13 @@ const columns = [
   },
 ];
 
-const TransactionTable = () => {
-  return <Table dataSource={data} columns={columns} />;
+const TransactionTable = ({transactions}:{transactions:{}[]}) => {
+  // console.log('Transactions ',transactions)
+  return (
+    <>
+      <Table dataSource={transactions} columns={columns} />
+    </>
+  );
 };
 
 export default TransactionTable;

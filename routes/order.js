@@ -9,13 +9,25 @@ const router = exporess.Router();
 // Test route 
 router.get('/', async (req, res)=>{
     try {
-        const orders = await Order.find({user: req.query.user}).populate("currency").populate("user");
-        console.log(orders)
-        res.json(orders)        
+        let orders = await Order.find({user: req.query.user}).populate("currency").populate("user");
+        res.json(orders);
     } catch (error) {
-        res.send("Failed orders find error!")
+        res.send("Failed orders find error!");
     }
 });
+router.get('/complete', async (req, res)=>{
+    try {
+        const orders = await Order.find({status: "Approved"}).populate("currency").populate("user");
+        console.log("Orders: ** ",orders)
+        res.json(orders);
+    } catch (error) {
+        res.json({
+            message: "Faild fetch completed orders",
+            error
+        })
+    }
+    let orders = await Order.find().populate("currency").populate("user");
+})
 
 // Create orders
 router.post('/create', async (req, res)=>{
@@ -23,9 +35,15 @@ router.post('/create', async (req, res)=>{
     try {
         const order = new Order(req.body);
         const result = await order.save();
+        const history = new History({
+            orderId: orderId,
+            changes: req.body
+        });
+        const historyResponse = await history.save();
         res.json({
             message: "Order saved successfully!",
-            result
+            result,
+            historyResponse
         });
     } catch (err) {
         res.json({
