@@ -1,4 +1,5 @@
 const Banner = ({className=''}:{className: string}) => {
+
     return(
         <div className={`nt-component nt-hero-message ${className}`}>
             <h3 className='text-3xl'>An effordable, rapid method for intarnational <span>currency exchange!</span></h3>

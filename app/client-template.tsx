@@ -1,14 +1,22 @@
-import MainNav from '@/components/MainNav'
-import Footer from '@/components/Footer'
+'use client'
+import MainNav from '@/components/MainNav';
+import Footer from '@/components/Footer';
+import Animate from '@/components/Animate';
 
-const Client = ({children}:{children: React.ReactNode}) => {
-    return(
-        <>
-            <MainNav/>
-            {children}
-            <Footer/>
-        </>
-    )
-}
+const Client = ({ children }: { children: React.ReactNode }) => {
 
-export default Client
+
+  return (
+    <>  
+        <Animate delay={0} onviewport={false}>
+            <MainNav />
+        </Animate>
+        {children}
+        <Animate direction='b-t'>
+          <Footer />
+        </Animate>
+    </>
+  );
+};
+
+export default Client;

@@ -10,6 +10,7 @@ import Client from "./client-template";
 import { Button } from "antd";
 import Tabs from '@/components/Tabs';
 import axios from "axios";
+import Animate from "@/components/Animate";
 
 const testimonials = [
   {
@@ -41,31 +42,45 @@ export default async function Home() {
   return (
     <Client>
       <main className='nt-main p-2'>
+        <Animate direction="b-t" delay={0.2}>
         <Section sectionName='hero' span={[12]} className='bg-green-700 pt-28 rounded text-white'>
-          <Banner key={'nt-hero-1'} className='text-center'/>
+          <Animate direction="t-b" delay={0.2}>
+            <Banner key={'nt-hero-1'} className='text-center'/>
+          </Animate>
         </Section>
+        </Animate>
         <Section sectionName='money-converter' span={[12]} className='nt-section'>
+          <Animate direction="b-t" delay={0.5}>
           <div className="p-3 border rounded bg-white w-full nt-money-converter-wrap">
             <Tabs data={currencies}/>
             <Countries currencies={currencies}/>
           </div>
+          </Animate>
         </Section>
         <Section sectionName='services' span={[12, 12]} className='pt-28'>
+          <Animate delay={0} direction="b-t">
           {[<div key="nt-services-1" className="nt-services">
-            <TitleBuilder type="section" title="Our services" message="Get our services, you will get bla bla bla. We are one of the best in Malaysia." className="text-center"/>
+              <TitleBuilder type="section" title="Our services" message="Get our services, you will get bla bla bla. We are one of the best in Malaysia." className="text-center"/>
           </div>,
           <Services key='in-services-2'/>
-        ]}
-        <Button>Hello Button</Button>
+          ]}
+        </Animate>
+        <Animate direction="b-t">
+          <Button>Hello Button</Button>
+        </Animate>
         </Section>
+        <Animate direction='b-t'>
         <Section sectionName='money-converter' span={[12]} className='nt'>
           <div className="nt-wrapper flex justify-center">
             <YoutubeLoader path="ym7qcc6GXdY"/>
           </div>
         </Section>
-        <Section sectionName='money-converter' span={[12]} className='nt'>
-          <Testimonial data={testimonials}/>
-        </Section>
+        </Animate>
+        <Animate direction='b-t'>
+          <Section sectionName='money-converter' span={[12]} className='nt'>
+            <Testimonial data={testimonials}/>
+          </Section>
+        </Animate>
       </main>
     </Client>
   )
