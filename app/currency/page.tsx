@@ -364,7 +364,7 @@ interface Currency {
   const CurrencyList: React.FC<CurrencyListProps> = ({ currencies }) => {
     return (
       <section className="pt-28">
-        <table className="w-full border border-collapse border-gray-300 rounded">
+        <table className="w-full border border-collapse border-gray-300 rounded-lg">
           <thead>
             <tr className="bg-gray-200">
               <th className="border border-gray-300 px-4 py-2 text-left">FLAG</th>
@@ -389,7 +389,7 @@ interface Currency {
               <td className="border border-gray-300 px-4 py-2">{currency.weSell}</td>
               <td className="border border-gray-300 px-4 py-2">{currency.lastUpdated}</td>
               <td className="border border-gray-300 px-4 py-2">
-                <button className="bg-black text-white py-2 px-8 rounded">More</button>
+                <button className="bg-black text-white py-2 px-8 rounded-lg">More</button>
               </td>
             </tr>
           ))}

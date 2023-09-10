@@ -17,7 +17,7 @@ const Dashboard = () => {
     console.log("Orders: ", orders);
     return(
         <div className="nt-dashboard-content grid grid-cols-12">
-            <div className="col-span-6 border rounded">
+            <div className="col-span-6">
                 You have {orders?.data?.length} orders.
             </div>
             <div className="col-span-6">

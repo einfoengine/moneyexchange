@@ -45,7 +45,7 @@ const Login = ({path}:{path: string} ) => {
     return(
         <>
             <div className="nt-login nt-component">
-                    <div className="nt-login border w-2/5 mx-auto mt-5 rounded p-5">
+                    <div className="nt-login border w-2/5 mx-auto mt-5 rounded-lg p-5">
                         <h3 className="text-lg">Login</h3>
                         <Form
                             name="nt-login-form"

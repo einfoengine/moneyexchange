@@ -43,7 +43,7 @@ export default async function Home() {
     <Client>
       <main className='nt-main p-2'>
         <Animate direction="b-t" delay={0.2}>
-        <Section sectionName='hero' span={[12]} className='bg-green-700 pt-28 rounded text-white'>
+        <Section sectionName='hero' span={[12]} className='bg-green-700 pt-28 rounded-xl text-white'>
           <Animate direction="t-b" delay={0.2}>
             <Banner key={'nt-hero-1'} className='text-center'/>
           </Animate>
@@ -51,7 +51,7 @@ export default async function Home() {
         </Animate>
         <Section sectionName='money-converter' span={[12]} className='nt-section'>
           <Animate direction="b-t" delay={0.5}>
-          <div className="p-3 border rounded bg-white w-full nt-money-converter-wrap">
+          <div className="p-3 border rounded-xl bg-white w-full nt-money-converter-wrap">
             <Tabs data={currencies}/>
             <Countries currencies={currencies}/>
           </div>
@@ -60,7 +60,7 @@ export default async function Home() {
         <Section sectionName='services' span={[12, 12]} className='pt-28'>
           <Animate delay={0} direction="b-t">
           {[<div key="nt-services-1" className="nt-services">
-              <TitleBuilder type="section" title="Our services" message="Get our services, you will get bla bla bla. We are one of the best in Malaysia." className="text-center"/>
+              <TitleBuilder type="section" title="The services we provide" message="Get our services, you will get bla bla bla. We are one of the best in Malaysia." className="text-center"/>
           </div>,
           <Services key='in-services-2'/>
           ]}

@@ -9,7 +9,7 @@ const Client = ({ children }: { children: React.ReactNode }) => {
   return (
     <>  
         <Animate delay={0} onviewport={false}>
-            <MainNav />
+          <MainNav />
         </Animate>
         {children}
         <Animate direction='b-t'>

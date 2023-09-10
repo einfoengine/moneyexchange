@@ -47,10 +47,10 @@ const MoneyConverter: React.FC<ComponentProps> = ({ className, functionType, dat
       <form>
         <div className="flex">
           <div className="nt-form-col pl-2 grow">
-            <label className="nt-label" htmlFor="nt-base-currency">
+            <label className="nt-label nt-heading-paragraph text-center block" htmlFor="nt-base-currency">
               How much you wanna trade?
             </label>
-            <div className="border rounded p-1 flex">
+            <div className="border rounded-lg p-1 flex">
               <input type="number" className="grow" defaultValue={0} onChange={(e)=>{setAmount(parseFloat(e.target.value))}}/>
               <select name="nt-currency-select" onChange={(e)=>{
                 setRate(parseFloat(e.target.selectedOptions[0].getAttribute('data-rate')));
@@ -69,12 +69,12 @@ const MoneyConverter: React.FC<ComponentProps> = ({ className, functionType, dat
               </select>
             </div>
             <div className="text-center">
-              The rate is {rate}, Te amount is {amount}, You will get <span>{rate * amount}</span>
+              <span className="nt-heading-module nt-text-fade">The rate is {rate}, Te amount is {amount}, You will get <span>{rate * amount}</span></span>
             </div>
           </div>
         </div>
         {/*  */}
-        <button className="bg-black text-white rounded py-2 px-4 mx-auto flex mt-3" type="submit" onClickCapture={handleSUbmit}>
+        <button className="mx-auto block nt-btn nt-btn-primary mt-3" type="submit" onClickCapture={handleSUbmit}>
           Order
         </button>
       </form>

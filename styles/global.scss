@@ -1,22 +1,108 @@
 @import 'variable.scss';
 
 
-// Common
+// General
 // ====
-// .nt-header{
-//     &+*{
-//         padding-top: $nt-gutter * 3;
-//     }
-// }
+body{
+    font-size: $nt-base-font-size;
+}
+li{
+    list-style: none;
+}
+
+// Typegraphy
+// ====
+.nt-heading-jumbotroon{
+    @apply text-6xl font-extrabold;
+    font-size: $nt-jumbo-text;
+}
+.nt-heading-section{
+    font-size: $nt-section-title;
+}
+.nt-heading-module{
+ font-size: $nt-module-title;
+}
+.nt-heading-paragraph{
+    font-size: $nt-base-font-size;
+    @apply font-bold mb-3;
+}
+.nt-text-fade{
+    color: fade-out($nt-black, 0.6);
+}
+
+// Forms
+input {
+    &[type="text"], &[type="number"] {
+        padding: 2px;
+    }
+}
 
 // Element spesific
 // ====
+li, a, button, .btn{
+    &.nt-btn{
+        @apply rounded-xl py-2 px-6;
+        + .nt-btn{
+            @apply ml-2;
+        }
+    }
+    &.nt-btn-blank{
+        @apply border;
+    }
+    &.nt-btn-blank-primary{
+        @apply border;
+        color: $nt-brand-color;
+        border-color: $nt-brand-color;
+        &:hover{
+            background-color: $nt-brand-color;
+            color: $nt-white;
+        }
+    }
+    &.nt-btn-primary{
+        background-color: $nt-brand-color;
+        color: $nt-white;
+        @apply border;
+        border-color: $nt-brand-color;
+        &:hover{
+            background-color: transparent;
+            color: $nt-brand-color;
+        }
+    }
+}
+
+
+// Module spesific
+// ====
+// Main nav
+.nt-main-nav{
+    color: $nt-black;
+    ul{
+        align-items: center;
+        @apply flex
+    }
+    li{
+        &.nt-active{
+            color: $nt-brand-color;
+        }
+        &:hover{
+            color: $nt-brand-color;
+        }
+    }
+}
+// .sam-main-nav:hover{
+
+// }
 // Hero
 .nt-hero{
     min-height: 450px;
     background-image: url("https://cdn.pixabay.com/photo/2017/05/20/10/03/trade-2328525_1280.jpg");
     background-size: 100% auto;
+    padding-bottom: 60px;
 }
+.nt-hero-message{
+    padding: 100px;
+}
+
 
 // Currency list
 .nt-currencies-list{
@@ -27,5 +113,15 @@
 }
 // Money converter
 .nt-money-converter-wrap{
-    margin-top: -300px;
+    margin-top: -122px;
 }
+
+// Services
+// ====
+.nt-service-image{
+    max-width: 200px;
+    text-align: center;
+    margin: 60px auto;
+}
+
+// Tailwind override

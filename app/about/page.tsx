@@ -32,7 +32,7 @@ export default function AboutPage() {
   return (
     <Client>
       <main className='nt-main p-2'>
-        <Section sectionName='inner-page-hero' span={[12]} className='pt-28 rounded'>
+        <Section sectionName='inner-page-hero' span={[12]} className='pt-28 rounded-lg'>
             <div className='grid grid-cols-12 gap-4'>
                 <div className='col-span-6'>
                     <div className="nt-component nt-story">

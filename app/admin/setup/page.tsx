@@ -31,7 +31,7 @@ const AdminRegistration = () => {
     return(
         <>
             <div className="nt-admin-registration nt-component">
-                <div className="border w-2/5 mx-auto mt-5 rounded p-5">
+                <div className="border w-2/5 mx-auto mt-5 rounded-lg p-5">
                     <h3 className="text-lg">Admin registration</h3>
                     <Form
                         name="nt-admin-registration-form"

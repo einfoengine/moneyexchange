@@ -5,7 +5,7 @@ const Countries = ({currencies}:{currencies: any}) => {
         {
           currencies.map((item, index)=>{
             return(
-              <div key={index} className="nt-currencies-list flex border rounded bg-white p-2">
+              <div key={index} className="nt-currencies-list flex border rounded-lg bg-white p-2">
                 <span className="nt-flag mr-2" >
                   {item.flag}
                 </span>

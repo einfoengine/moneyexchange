@@ -28,7 +28,7 @@ const Login = () => {
     };
     return(
         <div className="nt-dashboard">
-            <div className="nt-login border w-2/5 mx-auto mt-5 rounded p-5">
+            <div className="nt-login border w-2/5 mx-auto mt-5 rounded-lg p-5">
                 <Form
                     name="nt-login-form"
                     autoComplete="off"

@@ -22,15 +22,15 @@ const Data:ServiceData = [
         title: "Service Three",
         sub_title: "sub title three",
         message: "Hello readers, this is the demo text about the service introduction",
-        image: "cryptocurrency_wallet 1.svg"
+        image: "cryptocurrency_wallet.svg"
     },
 ]
 const Services = () => {
   return (
     <div className='nt-services nt-component flex'>
         {Data.map((item, index) => (
-            <div key={`service-${index}`} className='nt-service-item'>
-                <Image width={300} height={200} src={`/images/${item.image}`} alt="" />
+            <div key={`service-${index}`} className='nt-service-items'>
+                <Image src={`/images/${item.image}`} width={200} height={200} alt="NodeThemes image missing" className='nt-service-image' />
                 <h3>{item.title}</h3>
                 <h4>{item.sub_title}</h4>
                 <p>{item.message}</p>

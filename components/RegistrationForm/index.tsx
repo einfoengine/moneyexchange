@@ -11,7 +11,7 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className='nt-component rounded border p-20'>
+    <div className='nt-component rounded-lg border p-20'>
       <h3 className='mb-10'>Register your account</h3>
       <Form
         labelCol={{ span: 6 }}

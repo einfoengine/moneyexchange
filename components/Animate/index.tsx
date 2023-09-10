@@ -8,7 +8,7 @@ const Animate = ({children, direction='t-b', delay=0, onviewport=true}:any) => {
         animate = {
             hidden: {
                 opacity: 0,
-                y: -30,
+                y: -50,
             },
             visible: {
                 opacity: 1,
@@ -24,7 +24,7 @@ const Animate = ({children, direction='t-b', delay=0, onviewport=true}:any) => {
         animate = {
             hidden: {
                 opacity: 0,
-                y: 30,
+                y: 50,
             },
             visible: {
                 opacity: 1,
@@ -40,7 +40,7 @@ const Animate = ({children, direction='t-b', delay=0, onviewport=true}:any) => {
         animate = {
             hidden: {
                 opacity: 0,
-                x: -30,
+                x: -50,
             },
             visible: {
                 opacity: 1,
@@ -56,7 +56,7 @@ const Animate = ({children, direction='t-b', delay=0, onviewport=true}:any) => {
         animate = {
             hidden: {
                 opacity: 0,
-                x: 30,
+                x: 50,
             },
             visible: {
                 opacity: 1,

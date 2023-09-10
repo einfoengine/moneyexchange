@@ -14,7 +14,7 @@ const TitleBuilder = ({type, title, subTitle, message, image, alt, className=''}
             return(
                 <div className={`nt-component nt-title-builder ${className}`}>
                     {image&&<Image className='nt-section-title-image' src={image} alt={alt} layout='intrinsic'/>}
-                    <h2 className='nt-section-title'>{title}</h2>
+                    <h2 className='nt-heading-section'>{title}</h2>
                     {subTitle&&<h3 className='nt-section-sub-title'>{subTitle}</h3>}
                     {message&&<p className='nt-section-message'>{message}</p>}
                 </div>
@@ -22,9 +22,9 @@ const TitleBuilder = ({type, title, subTitle, message, image, alt, className=''}
         case 'component':
             return(
                 <div className="nt-component nt-title-builder">
-                    {image&&<Image className='nt-component-title-image' src={image} alt={alt} layout='intrinsic'/>}
-                    <h2 className='nt-component-title'>{title}</h2>
-                    {subTitle&&<h3 className='nt-component-sub-title'>{subTitle}</h3>}
+                    {image&&<Image className='nt-heading-module-image' src={image} alt={alt} layout='intrinsic'/>}
+                    <h2 className='nt-heading-module'>{title}</h2>
+                    {subTitle&&<h3 className='nt-sub-heading-module'>{subTitle}</h3>}
                     {message&&<p className='nt-component-message'>{message}</p>}
                 </div>
             )
