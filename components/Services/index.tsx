@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image';
 type ServiceData = {
     title: string;
@@ -31,11 +32,13 @@ const Services = () => {
         {Data.map((item, index) => (
             <div key={`service-${index}`} className='nt-service-items'>
                 <Image src={`/images/${item.image}`} width={200} height={200} alt="NodeThemes image missing" className='nt-service-image' />
-                <h3>{item.title}</h3>
-                <h4>{item.sub_title}</h4>
+                <h3 className='nt-heading-paragraph'>{item.title}</h3>
+                <h4 className='nt-sub-heading-paragraph'>{item.sub_title}</h4>
                 <p>{item.message}</p>
             </div>
         ))}
+        
+
     </div>
   )
 }

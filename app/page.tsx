@@ -57,17 +57,14 @@ export default async function Home() {
           </div>
           </Animate>
         </Section>
-        <Section sectionName='services' span={[12, 12]} className='pt-28'>
+        <Section sectionName='services' span={[12]} className='pt-28'>
           <Animate delay={0} direction="b-t">
           {[<div key="nt-services-1" className="nt-services">
               <TitleBuilder type="section" title="The services we provide" message="Get our services, you will get bla bla bla. We are one of the best in Malaysia." className="text-center"/>
           </div>,
-          <Services key='in-services-2'/>
+            <Services key='in-services-2'/>
           ]}
-        </Animate>
-        <Animate direction="b-t">
-          <Button>Hello Button</Button>
-        </Animate>
+          </Animate>
         </Section>
         <Animate direction='b-t'>
         <Section sectionName='money-converter' span={[12]} className='nt'>
@@ -78,7 +75,10 @@ export default async function Home() {
         </Animate>
         <Animate direction='b-t'>
           <Section sectionName='money-converter' span={[12]} className='nt'>
-            <Testimonial data={testimonials}/>
+            <>
+              <TitleBuilder type="section" title="They have said it" className="text-center"/>
+              <Testimonial data={testimonials}/>
+            </>
           </Section>
         </Animate>
       </main>

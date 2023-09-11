@@ -33,6 +33,10 @@ $nt-section-title: $nt-heading-size-2;
 $nt-module-title: $nt-heading-size-3;
 $nt-paragraph-title: $nt-heading-size-4;
 
+$nt-heading-color: $nt-black;
+$nt-sub-heading-color: fade-out($nt-black, 0.5);
+$nt-text-color: fade-out($nt-black, 0.3);
+
 // Border
 $nt-base-border: 1px solid;
 
