@@ -12,7 +12,7 @@ import user from './routes/user.js';
 import admin from './routes/admin.js';
 import currency from './routes/currency.js'
 import order from './routes/order.js'
-import authorization from './routes/auth.js'
+import auth from './routes/auth.js'
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -39,12 +39,12 @@ app.prepare().then(() => {
   expressApp.use(cookieParser());
 
   // Route end points
+  // Auth
+  expressApp.use('/api', auth);
   // Users
   expressApp.use('/api/users', user);
   expressApp.use('/api/admin', admin);
 
-  // Auth
-  expressApp.use('/api/user', authorization);
   
   // Currency
   expressApp.use('/api/currencies', currency);

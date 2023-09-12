@@ -1,12 +1,17 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
+import {userauth, adminauth} from '../middleware/auth.js';
 
 const router = express.Router();
 
-router.get('/auth', (req, res)=>{
-    console.log("Auth router ", req)
+router.get('/auth/user', userauth, (req, res)=>{
     res.json({
-        message: "Authorization router hit",
+        req: req.cookies
+    })
+})
+
+router.get('/auth/admin', adminauth,(req, res)=>{
+    res.json({
         cookie: req.cookies
     })
 })

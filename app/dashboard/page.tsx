@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 const Dashboard = () => {
     const [orders, setOrders] = useState();
     useEffect(()=>{
-        axios.get(`/api/orders?user=${JSON.parse(localStorage.getItem("user"))._id}`).then((response)=>{
+        axios.get(`/api/orders?user=${JSON.parse(localStorage.getItem("user"))?._id}`).then((response)=>{
             if(response){
                 setOrders(response);
             }

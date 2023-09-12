@@ -3,7 +3,8 @@ import axios from 'axios';
 import {Layout, Menu } from 'antd';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-// import PageProtector from '@/components/PageProtector';
+import { userauth, adminauth } from '../auth';
+import { useEffect, useState } from 'react';
 
 const { Header, Footer } = Layout;
 
@@ -16,11 +17,21 @@ const topMenu = [
     { key: 'logout', label: 'Logout'}
 ];
 
-export default function RootLayout({children}: {children: React.ReactNode}){
-    // PageProtector();
+export default function RootLayout({children, user}: {children: React.ReactNode, user:any}){
+    const [load, setLoad] = useState(0);
     const router = useRouter();
+    useEffect(()=>{
+        userauth().then((res)=>{
+            console.log("Res ", res);
+            if(res.authorized!==false){
+                setLoad(1);
+            }else{
+                router.push("/");
+            }
+        });
+    },[])
+
     const handleTopMenu = async (e:any) => {
-        console.log(e.key);
         if(e.key==='logout'){
             const response = await axios.get('/api/users/user/logout');
             
@@ -28,7 +39,8 @@ export default function RootLayout({children}: {children: React.ReactNode}){
             router.push('/');
         }
     };
-    return (
+    if(load===1){
+        return (
             <div>
                 <Header className='grid grid-cols-12 nt-top'>
                     <div className="nt-brand col-span-2">
@@ -46,5 +58,7 @@ export default function RootLayout({children}: {children: React.ReactNode}){
                     {children}
                 <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
             </div>
-    )
+        )
+    }else{
+    }
 }
