@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useRouter } from 'next/navigation';
 
 const userauth = async () => {
   try {
@@ -16,7 +15,7 @@ const userauth = async () => {
 }
 const adminauth = async () => {
   try {
-    const {data} = await axios.get('/api/auth/user');
+    const {data} = await axios.get('/api/auth/admin');
     return {
       ...data, authorized: true
     }

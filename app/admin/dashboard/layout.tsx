@@ -3,8 +3,9 @@ import {Layout, Menu } from 'antd';
 import { useRouter } from 'next/navigation';
 import Link from "next/link"
 import axios from 'axios';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AdminContext } from '@/Context';
+import { adminauth } from '@/app/auth';
 
 // import PageProtector from '@/components/PageProtector';
 const { Header, Footer } = Layout;
@@ -19,8 +20,20 @@ const topMenu = [
 ];
 
 export default function RootLayout({children}: {children: React.ReactNode}){
+    const [load, setLoad] = useState(0)
     const {state,dispatch} = useContext(AdminContext);
     const router = useRouter();
+    
+    useEffect(()=>{
+        adminauth().then((res)=>{
+            if(res?.authorized!==false){
+                setLoad(1)
+            }else{
+                router.push("/");
+            }
+        })
+    },[load])
+
 
     const handleTopMenu = async (e:any) => {
         if(e.key==='logout'){
@@ -30,7 +43,8 @@ export default function RootLayout({children}: {children: React.ReactNode}){
             router.push('/admin/login');
         }
     };
-    return (
+    if(load!==0){
+        return (
             <div>
                 <Header className='grid grid-cols-12 nt-top'>
                     <div className="nt-brand col-span-2">
@@ -48,5 +62,6 @@ export default function RootLayout({children}: {children: React.ReactNode}){
                     {children}
                 <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
             </div>
-    )
+        )
+    }
 }

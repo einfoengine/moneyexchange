@@ -22,7 +22,6 @@ export default function RootLayout({children, user}: {children: React.ReactNode,
     const router = useRouter();
     useEffect(()=>{
         userauth().then((res)=>{
-            console.log("Res ", res);
             if(res.authorized!==false){
                 setLoad(1);
             }else{
@@ -59,6 +58,5 @@ export default function RootLayout({children, user}: {children: React.ReactNode,
                 <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
             </div>
         )
-    }else{
     }
 }
