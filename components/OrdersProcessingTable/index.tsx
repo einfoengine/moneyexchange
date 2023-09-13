@@ -15,11 +15,11 @@ const handleChangeOrderStatus = async (record: OrderData, checked: boolean) => {
 
 
 
-const OrdersProcessingTable: React.FC = () => {
+const OrdersProcessingTable: React.FC = ({}) => {
   const [data, setData] = useState<OrderData[]>([]); // Initialize with an empty array of OrderData
-
+  
   useEffect(() => {
-    axios.get(`/api/orders?user=${JSON.parse(localStorage.getItem("user"))._id}`)
+    axios.get(`/api/orders`)
       .then((response) => {
         if (response) {
           console.log(response.data);
