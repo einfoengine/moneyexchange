@@ -67,7 +67,7 @@ router.post('/login', async (req, res) => {
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '6h' });
 
         res.cookie("admintoken", token, {
-            maxAge: 6 * 60 * 60 * 1000, // 6 hours in milliseconds
+            // maxAge: 6 * 60 * 60 * 1000, // 6 hours in milliseconds
             httpOnly: true,
             secure: true, 
             sameSite: "strict", // Restrict to same-site requests

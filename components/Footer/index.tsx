@@ -129,7 +129,7 @@ const Footer = () => {
             </div>
           </div>
         </section>
-        <footer className="bg-gray-900 text-white text-center py-4">
+        <footer className="nt-footer bg-gray-900 text-white text-center py-4">
           <p className="text-sm">
             All Rights Reserved 2022-2023 @ VibelyDigital
           </p>

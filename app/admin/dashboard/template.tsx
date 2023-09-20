@@ -28,7 +28,7 @@ const Template:React.FC<{children: React.ReactNode}> = ({children}) => {
                 {/* <BreadCrumb/> */}
                 <Divider/>
                 {/* End breadcrumb */}
-                <div className="nt-main grid grid-cols-12">
+                <div className="nt-main grid grid-cols-12 gap-3">
                     <div className="nt-aside col-span-2">
                         <Menu
                             mode="inline"

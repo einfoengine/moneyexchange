@@ -165,4 +165,60 @@ div{
     }
 }
 
-// Tailwind override
+// Position spesific
+.nt-footer{
+    p{
+        color: $nt-white;
+    }
+}
+
+
+// Page spesific
+// ====
+
+// Admin / Dashboard
+.nt-admin{
+    background-color: $nt-brand-admin-color;
+    padding-top: 10px;
+    li, a, span{
+        color: $nt-black;
+    }
+    .ant-layout-header{
+        background-color: transparent;
+    }
+    .nt-brand{
+        padding-left: 15px;
+        background-color: $nt-white;
+        border-top-left-radius: $nt-border-radius;
+        border-bottom-left-radius: $nt-border-radius;
+        font-weight: 900;
+    }
+    .ant-menu-overflow{
+        display: table;
+        text-align: right;
+        background-color: $nt-white;
+        border-top-right-radius: $nt-border-radius;
+        border-bottom-right-radius: $nt-border-radius;
+    }
+}
+.nt-dashboard{
+    padding-bottom: 10px;
+    .ant-menu{
+        border-radius: $nt-border-radius;
+    }
+    .ant-picker-calendar{
+        border-radius: $nt-border-radius;
+        @apply p-3;
+    }
+}
+
+// Ant design 
+:where(.css-dev-only-do-not-override-1w4v3hc).ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
+    color: $nt-brand-color;
+}
+.ant-tabs-ink-bar.ant-tabs-ink-bar-animated{
+    background-color: $nt-brand-color;
+}
+.ant-tabs-nav-list{
+    margin: auto;
+}

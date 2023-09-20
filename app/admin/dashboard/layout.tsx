@@ -48,7 +48,7 @@ export default function RootLayout({children}: {children: React.ReactNode}){
             <div>
                 <Header className='grid grid-cols-12 nt-top'>
                     <div className="nt-brand col-span-2">
-                        <h1 className="nt-logo text-white"><Link href={'/'} >Logo</Link></h1>
+                        <h1 className="nt-logo"><Link href={'/'} >Logo</Link></h1>
                     </div>
                     <Menu
                         onClick={handleTopMenu}

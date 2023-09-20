@@ -4,8 +4,8 @@ export default function AdminLayout({
     children: React.ReactNode
   }){
     return (
-        <>
+        <div className="nt-admin">
             {children}
-        </>
+        </div>
     )
 }
