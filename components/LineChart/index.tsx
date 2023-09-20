@@ -50,26 +50,30 @@ const COLORS = ['#0088FE', '#00C49F',];
 
 const NtLineChart = () => {
   return (
-    
-        <LineChart
-          width={500}
-          height={300}
-          data={data}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 0,
-            bottom: 5,
-          }}
+    <div className="nt-component mt-3">
+      <h3 className="nt-mod-title">
+        Order overview
+      </h3>
+      <LineChart
+        width={500}
+        height={300}
+        data={data}
+        margin={{
+          top: 5,
+          right: 30,
+          left: 0,
+          bottom: 5,
+        }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-          <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-        </LineChart>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
+        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+      </LineChart>
+    </div>
   );
 };
 

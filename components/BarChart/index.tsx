@@ -7,6 +7,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'rec
 const NtBarChart = ({data}:{data: {}[]}) => {
     return (
         <div className='nt-component nt-chart'>
+            <h3 className='nt-mod-title'>Sales chart</h3>
             <BarChart
             width={500}
             height={300}

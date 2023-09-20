@@ -200,6 +200,17 @@ div{
         border-top-right-radius: $nt-border-radius;
         border-bottom-right-radius: $nt-border-radius;
     }
+    .nt-component{
+        background-color: $nt-white;
+        border-radius: $nt-border-radius;
+        .recharts-wrapper{
+            // padding-top: 20px;
+            // width: 100% !important;
+        }
+        svg{
+            width: 100% !important;
+        }
+    }
 }
 .nt-dashboard{
     padding-bottom: 10px;
