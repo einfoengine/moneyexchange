@@ -1,6 +1,7 @@
 import { Calendar } from "antd";
 import NtBarChart from "@/components/BarChart";
 import NtPieChart from "@/components/PieChart";
+import NtLineChart from "@/components/LineChart";
 const BarChartData = [
     {
       name: 'Page A',
@@ -45,6 +46,7 @@ const Dashboard = () => {
             <div className="col-span-6">
                 <NtBarChart data={BarChartData}/>
                 <NtPieChart/>
+                <NtLineChart/>
             </div>
             <div className="col-span-6">
                 <Calendar/>
