@@ -70,7 +70,7 @@ const Animate = ({children, direction='t-b', delay=0, onviewport=true}:any) => {
     }
     const [ref, inView] = useInView({
         triggerOnce: true, // Trigger animation once
-        threshold: 0.3,    // Trigger animation when 30% of the element is in the viewport
+        threshold: 0.1,    // Trigger animation when 30% of the element is in the viewport
     });
     if(onviewport===true){
         return(
