@@ -46,7 +46,7 @@ export default function RootLayout({children}: {children: React.ReactNode}){
     if(load!==0){
         return (
             <div>
-                <Header className='grid grid-cols-12 nt-top'>
+                <Header className='grid grid-cols-12 nt-top mb-3'>
                     <div className="nt-brand col-span-2">
                         <h1 className="nt-logo"><Link href={'/'} >Logo</Link></h1>
                     </div>

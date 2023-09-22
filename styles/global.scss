@@ -211,11 +211,13 @@ div{
             width: 100% !important;
         }
     }
+
 }
 .nt-dashboard{
     padding-bottom: 10px;
     .ant-menu{
         border-radius: $nt-border-radius;
+        height: 100%;
     }
     .ant-picker-calendar{
         border-radius: $nt-border-radius;

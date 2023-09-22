@@ -26,7 +26,7 @@ const Template:React.FC<{children: React.ReactNode}> = ({children}) => {
             {/* End top */}
             <Content style={{ padding: '0 50px' }}>
                 {/* <BreadCrumb/> */}
-                <Divider/>
+                {/* <Divider/> */}
                 {/* End breadcrumb */}
                 <div className="nt-main grid grid-cols-12 gap-3">
                     <div className="nt-aside col-span-2">
