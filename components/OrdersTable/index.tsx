@@ -1,6 +1,6 @@
 'use client'
 
-import { Table, Button } from 'antd';
+import { Table } from 'antd';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -93,7 +93,9 @@ const OrdersTable: React.FC = () => {
     console.log(`Order ${record.orderId} approved!`);
   };
 
-  return <Table dataSource={data} columns={columns} />;
+  return (
+      <Table dataSource={data} columns={columns}/>
+  );
 };
 
 export default OrdersTable;

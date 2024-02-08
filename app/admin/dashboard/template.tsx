@@ -7,6 +7,7 @@ const { Content} = Layout;
 
   const asideMenu = [
     { key: 'dashboard', label: (<a href="/admin/dashboard">Dashboard</a>) },
+    { key: 'dashboard', label: (<a href="/admin/dashboard/pages">pages</a>) },
     { key: 'orders', label: (<a href="/admin/dashboard/orders">Orders</a>) },
     { key: 'transactions', label: (<a href="/admin/dashboard/transections">Transactions</a>) },
     { key: 'price', label: (<a href="/admin/dashboard/price">Price</a>) },
@@ -22,12 +23,7 @@ const Template:React.FC<{children: React.ReactNode}> = ({children}) => {
 
     return(
         <div className="nt-dashboard">
-            
-            {/* End top */}
             <Content style={{ padding: '0 50px' }}>
-                {/* <BreadCrumb/> */}
-                {/* <Divider/> */}
-                {/* End breadcrumb */}
                 <div className="nt-main grid grid-cols-12 gap-3">
                     <div className="nt-aside col-span-2">
                         <Menu
@@ -35,15 +31,12 @@ const Template:React.FC<{children: React.ReactNode}> = ({children}) => {
                             items={asideMenu}
                         />
                     </div>
-                    <div className="nt-content col-span-10">
+                    <div className="nt-content col-span-10 overflow-hidden rounded-2xl ml-3">
                         {children}
                     </div>
                 </div>
                 
             </Content>
-            {/* End main */}
-            
-            {/* End footer */}
         </div>
     );
 }

@@ -3,7 +3,7 @@ import axios from 'axios';
 import {Layout, Menu } from 'antd';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { userauth, adminauth } from '../auth';
+import { userauth } from '../auth';
 import { useEffect, useState } from 'react';
 
 const { Header, Footer } = Layout;

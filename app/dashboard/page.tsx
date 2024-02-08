@@ -14,10 +14,9 @@ const Dashboard = () => {
             console.log("Ordata parse error: ", err);
         });
     },[])
-    console.log("Orders: ", orders);
     return(
         <div className="nt-dashboard-content grid grid-cols-12">
-            <div className="col-span-6">
+            <div className="col-span-6 bg-white ml-3 p-3 mr-3 rounded-2xl">
                 You have {orders?.data?.length} orders.
             </div>
             <div className="col-span-6">

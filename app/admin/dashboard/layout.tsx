@@ -21,7 +21,7 @@ const topMenu = [
 
 export default function RootLayout({children}: {children: React.ReactNode}){
     const [load, setLoad] = useState(0)
-    const {state,dispatch} = useContext(AdminContext);
+    const {dispatch} = useContext(AdminContext);
     const router = useRouter();
     
     useEffect(()=>{

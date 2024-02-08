@@ -2,14 +2,12 @@
 import { Breadcrumb, Layout, Menu, Divider } from 'antd';
 import { useRouter } from 'next/navigation';
 const { Content} = Layout;
-
-
-  const asideMenu = [
+const asideMenu = [
     { key: 'dashboard', label: (<a href="/dashboard">Dashboard</a>) },
     { key: 'orders', label: (<a href="/dashboard/orders">Orders</a>) },
     { key: 'transactions', label: (<a href="/dashboard/transections">Transactions</a>) },
     { key: 'message', label: (<a href="/dashboard/inbox">Message</a>) },
-  ];
+];
 
 const Template:React.FC<{children: React.ReactNode}> = ({children}) => {
     const router = useRouter();
@@ -31,7 +29,7 @@ const Template:React.FC<{children: React.ReactNode}> = ({children}) => {
                             items={asideMenu}
                         />
                     </div>
-                    <div className="nt-content col-span-10">
+                    <div className="nt-content overflow-hidden rounded-2xl ml-3 col-span-10">
                         {children}
                     </div>
                 </div>

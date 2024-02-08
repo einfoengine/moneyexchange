@@ -7,7 +7,6 @@ const userauth = async () => {
       ...data, authorized: true
     }
   } catch (err) {
-    console.log("Err ", err)
     return {
       authorized: false
     }
@@ -20,7 +19,6 @@ const adminauth = async () => {
       ...data, authorized: true
     }
   } catch (err) {
-    console.log("Err ", err)
     return {
       authorized: false
     }

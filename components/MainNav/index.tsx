@@ -27,17 +27,15 @@ const MainNav = () => {
     setShowLoginModal(false);
   };
 
-  useEffect(() => {
-    console.log("User state", state);
-  }, [state])
-
   return (
     <section className="nt-header mx-auto left-0 right-0">
       <div className="container mx-auto relative z-10">
         <div className="row">
           <div className="grid-cols-2 nt-top border rounded-lg flex justify-between p-5 mt-5 bg-gray-50 absolute w-full">
             <div className="nt-element">
-              <h1 className="text-lg">Logo</h1>
+              <Link href={"/"}>
+                <h1 className="text-lg">Logo</h1>
+              </Link>
             </div>
             {/* End element */}
             <div className="nt-element flex">

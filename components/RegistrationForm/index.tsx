@@ -60,8 +60,8 @@ const RegistrationForm = () => {
         >
           <Input />
         </Form.Item>
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit">
+        <Form.Item wrapperCol={{ offset: 6, span: 16 }}>
+          <Button type="primary" htmlType="submit" className='ant-btnant-btn-primary nt-btn-primary'>
             Register
           </Button>
         </Form.Item>

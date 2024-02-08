@@ -6,11 +6,13 @@ interface UserState {
   username?: string;
   _id?: string;
   role?: string;
+  state?: any;
   is_superuser?: boolean;
   access_lavel?: string;
   avatar?: string;
   designation?: string;
   authenticated?: boolean;
+  dispatch?: any
 }
 
 // Initial states with type annotations
@@ -41,7 +43,7 @@ const UserContext = createContext<UserState>(initialUserState);
 const adminReducer = (state: UserState, action: { type: string; payload?: UserState }) => {
   switch (action.type) {
     case 'login':
-      return action.payload || initialAdminState; 
+      return action.payload || initialAdminState;
     case 'logout':
       return initialAdminState;
     default:
@@ -81,7 +83,6 @@ export const UserProvider: React.FC<{children: React.ReactNode}> = ({children}) 
   
   useEffect(()=>{
     const localUser = JSON.parse(localStorage.getItem("user"));
-    console.log("Local user ",localUser)
     if(localUser?.role==='user'){
       dispatch({type:"login", payload: localUser})
     }
