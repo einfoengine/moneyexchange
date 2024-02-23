@@ -39,6 +39,8 @@ const Login = () => {
     return(
         <div className="nt-dashboard">
             <div className="nt-login border w-2/5 mx-auto mt-5 rounded-lg p-5">
+                <h3>Admin Restrected Area</h3>
+                <p>Your IP and all of your activites are being monitored!</p>
                 <Form
                     name="nt-login-form"
                     autoComplete="off"
@@ -65,15 +67,17 @@ const Login = () => {
                     <Form.Item<FieldType>
                     name="remember"
                     valuePropName="checked"
-                    wrapperCol={{ offset: 8, span: 16 }}
+                    // wrapperCol={{ offset: 3, span: 16 }}
                     >
-                    <Checkbox>Remember me</Checkbox>
+                        <Checkbox>Remember me</Checkbox>
                     </Form.Item>
 
-                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                    <Button type="primary" htmlType="submit" className="nt-btn-primary">
-                        Submit
-                    </Button>
+                    <Form.Item 
+                    // wrapperCol={{ offset: 8, span: 16 }}
+                    >
+                        <Button type="primary" htmlType="submit" className="nt-btn-primary hover:bg-green-600 hover:text-white">
+                            Submit
+                        </Button>
                     </Form.Item>
                 </Form>
             </div>

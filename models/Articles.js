@@ -19,7 +19,8 @@ const articleSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-});
+},
+{timestamps: true});
 
 const Blog = mongoose.model('Article', articleSchema);
 
