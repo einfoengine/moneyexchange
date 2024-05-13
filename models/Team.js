@@ -1,19 +1,24 @@
-// models/Blog.js
 import mongoose from 'mongoose';
 
-const articleSchema = new mongoose.Schema({
+const teamSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
+    unique: true
   },
   content: {
     type: String,
     required: true,
   },
+  meta: {
+    type: String
+  },
+  description: {
+    type: String
+  },
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Admin', // Reference to the Admin model
-    required: true,
   },
   createdAt: {
     type: Date,
@@ -22,6 +27,6 @@ const articleSchema = new mongoose.Schema({
 },
 {timestamps: true});
 
-const Blog = mongoose.model('Article', articleSchema);
+const Team = mongoose.model('Article', teamSchema);
 
-export default Article;
+export default Team;

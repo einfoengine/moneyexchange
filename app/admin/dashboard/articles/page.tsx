@@ -16,6 +16,7 @@ const { Content } = Layout;
 
 const Inbox = () => {
   const [editorContent, setEditorContent] = useState();
+  const [editorTitle, setEditorTitle] = useState();
   const handleModuleChange = (content:any) => {
     setEditorContent(content);
   }
@@ -31,7 +32,7 @@ const Inbox = () => {
           </TabList>
           <TabPanel>
             <div id='nt-create-article' className='nt-create-article nt-element'>
-                <input type="text" name="article-title" id="nt-article-title" className='nt-article-title border rounded-lg mb-3 w-full py-2 px-3' placeholder='What is your article title?'/>
+              <input type="text" name="article-title" id="nt-article-title" className='nt-article-title border rounded-lg mb-3 w-full py-2 px-3' placeholder='What is your article title?'/>
                 <FroalaEditorComponent 
                   tag="textarea" 
                   model={editorContent}

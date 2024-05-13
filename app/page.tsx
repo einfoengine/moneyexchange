@@ -36,9 +36,26 @@ const getCurrencies = async () => {
   }
   return response.data
 }
+const getArticles = async () => {
+  const response = await axios.get('http://localhost:3000/api/articles');
+  if(response.status!==200){
+    throw new Error("Faild reading articles!");
+  }
+  return response.data
+}
+const getServices = async () => {
+  const response = await axios.get('http://localhost:3000/api/services');
+  if(response.status!==200){
+    throw new Error("Faild reading services!");
+  }
+  return response.data
+}
+
 
 export default async function Home() {
+  const services = await getServices();
   const currencies = await getCurrencies();
+  const articles = await getArticles();
   return (
     <Client>
       <main className='nt-main p-2'>
@@ -59,22 +76,22 @@ export default async function Home() {
         </Section>
         <Section sectionName='services' span={[12]} className='pt-28'>
           <Animate delay={0} direction="b-t">
-          {[<div key="nt-services-1" className="nt-services">
+            {[<div key="nt-services-1" className="nt-services">
               <TitleBuilder type="section" title="The services we provide" message="Get our services, you will get bla bla bla. We are one of the best in Malaysia." className="text-center"/>
-          </div>,
-            <Services key='in-services-2'/>
-          ]}
+            </div>,
+              <Services services={services} key='in-services-2'/>
+            ]}
           </Animate>
         </Section>
         <Animate direction='b-t'>
-        <Section sectionName='money-converter' span={[12]} className='nt'>
-          <div className="nt-wrapper flex justify-center">
-            <YoutubeLoader path="ym7qcc6GXdY"/>
-          </div>
-        </Section>
+          <Section sectionName='money-converter' span={[12]} className='nt'>
+            <div className="nt-wrapper flex justify-center">
+              <YoutubeLoader path="ym7qcc6GXdY"/>
+            </div>
+          </Section>
         </Animate>
         <Animate direction='b-t'>
-          <Section sectionName='money-converter' span={[12]} className='nt'>
+          <Section sectionName='testimonial' span={[12]} className='nt'>
             <>
               <TitleBuilder type="section" title="They have said it" className="text-center"/>
               <Testimonial data={testimonials}/>

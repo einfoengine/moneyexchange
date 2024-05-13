@@ -27,7 +27,7 @@ router.get('/user', async (req, res)=>{
 
 // Create orders
 router.post('/create', async (req, res)=>{
-    console.log(req.body)
+    // console.log(req.body)
     try {
         const order = new Order(req.body);
         const result = await order.save();

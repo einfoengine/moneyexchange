@@ -10,9 +10,11 @@ import cookieParser from 'cookie-parser';
 // Import routes
 import user from './routes/user.js';
 import admin from './routes/admin.js';
-import currency from './routes/currency.js'
-import order from './routes/order.js'
-import auth from './routes/auth.js'
+import currency from './routes/currency.js';
+import order from './routes/order.js';
+import auth from './routes/auth.js';
+import article from './routes/article.js';
+import service from './routes/service.js'
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -29,7 +31,7 @@ app.prepare().then(() => {
     console.error("MongoDB connection error: ", err);
   });
 
-  // Routes and middleware here  
+  // Routes and middleware here
   // expressApp.use(morgan('combined'));
 
   // Pers JSON requests
@@ -53,6 +55,15 @@ app.prepare().then(() => {
   // Orders
   expressApp.use('/api/orders', order);
 
+  // Articles
+  expressApp.use('/api/articles', article);
+  
+  // Services
+  expressApp.use('/api/services', service);
+
+  // Testimonial
+  expressApp.use('/api/testimonial', testimonial);
+
   // Test route
   expressApp.get('/api', (req, res) => {
     const responseData = {
@@ -66,6 +77,8 @@ app.prepare().then(() => {
   expressApp.get('*', (req, res) => {
     return handle(req, res);
   });
+
+  
 
   // Start the server
   expressApp.listen(process.env.PORT, (err) => {

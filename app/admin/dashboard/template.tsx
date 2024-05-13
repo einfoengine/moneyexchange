@@ -1,18 +1,19 @@
 'use client'
 import { Breadcrumb, Layout, Menu, Divider } from 'antd';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 const { Content} = Layout;
 
 
 
   const asideMenu = [
-    { key: 'dashboard', label: (<a href="/admin/dashboard">Dashboard</a>) },
-    { key: 'dashboard', label: (<a href="/admin/dashboard/pages">pages</a>) },
-    { key: 'orders', label: (<a href="/admin/dashboard/orders">Orders</a>) },
-    { key: 'transactions', label: (<a href="/admin/dashboard/transections">Transactions</a>) },
-    { key: 'price', label: (<a href="/admin/dashboard/price">Price</a>) },
-    { key: 'message', label: (<a href="/admin/dashboard/inbox">Message</a>) },
-    { key: 'users', label: (<a href="/admin/dashboard/users">Users</a>) },
+    { key: 'dashboard', label: (<Link href="/admin/dashboard">Dashboard</Link>) },
+    { key: 'dashboard', label: (<Link href="/admin/dashboard/articles">Articles</Link>) },
+    { key: 'orders', label: (<Link href="/admin/dashboard/orders">Orders</Link>) },
+    { key: 'transactions', label: (<Link href="/admin/dashboard/transections">Transactions</Link>) },
+    { key: 'price', label: (<Link href="/admin/dashboard/price">Price</Link>) },
+    { key: 'message', label: (<Link href="/admin/dashboard/inbox">Message</Link>) },
+    { key: 'users', label: (<Link href="/admin/dashboard/users">Users</Link>) },
     { key: 'profile', label: 'Profile' },
   ];
 

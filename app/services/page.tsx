@@ -4,25 +4,24 @@ import TitleBuilder from "@/components/TitleBuilder";
 import Client from "../client-template";
 
 const servicesData = [
-    {
-      title: "Service 1",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      image: "https://via.placeholder.com/150", // Placeholder image URL
-    },
-    {
-      title: "Service 2",
-      description: "Nulla facilisi. In hac habitasse platea dictumst.",
-      image: "https://via.placeholder.com/150", // Placeholder image URL
-    },
-    {
-      title: "Service 3",
-      description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
-      image: "https://via.placeholder.com/150", // Placeholder image URL
-    },
-    // Add more services as needed
-  ];
+  {
+    title: "Service 1",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    image: "https://via.placeholder.com/150", // Placeholder image URL
+  },
+  {
+    title: "Service 2",
+    description: "Nulla facilisi. In hac habitasse platea dictumst.",
+    image: "https://via.placeholder.com/150", // Placeholder image URL
+  },
+  {
+    title: "Service 3",
+    description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
+    image: "https://via.placeholder.com/150", // Placeholder image URL
+  },
+  // Add more services as needed
+];
   
-
 const ServicePage = () => {
   return (
     <Client>
