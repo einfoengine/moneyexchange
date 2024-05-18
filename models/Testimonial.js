@@ -10,24 +10,21 @@ const testimonialSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  meta: {
-    type: String
-  },
   author: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Admin', // Reference to the Admin model
+    type: String,
+    ref: 'Admin',
+  },
+  designation: {
+    type: String,
+    required: true
   },
   image: {
     type: String,
     default: '/images/user.jpg'
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
 },
 {timestamps: true});
 
-const Testimonial = mongoose.model('Article', testimonialSchema);
+const Testimonial = mongoose.model('Testimonial', testimonialSchema);
 
 export default Testimonial;

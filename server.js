@@ -14,7 +14,8 @@ import currency from './routes/currency.js';
 import order from './routes/order.js';
 import auth from './routes/auth.js';
 import article from './routes/article.js';
-import service from './routes/service.js'
+import service from './routes/service.js';
+import testimonial from './routes/testimonial.js';
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -62,7 +63,7 @@ app.prepare().then(() => {
   expressApp.use('/api/services', service);
 
   // Testimonial
-  expressApp.use('/api/testimonial', testimonial);
+  expressApp.use('/api/testimonials', testimonial);
 
   // Test route
   expressApp.get('/api', (req, res) => {

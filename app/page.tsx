@@ -12,22 +12,30 @@ import Tabs from '@/components/Tabs';
 import axios from "axios";
 import Animate from "@/components/Animate";
 
-const testimonials = [
-  {
-      name: "Mohammad Maruf",
-      designation: "CEO | Vibely digital",
-      message: "Hello there I have worked with this company. This is one of the best company I have worked with so far.",
-      ratings: 4,
-      image: ""
-  },
-  {
-      name: "Mehedi hassan",
-      designation: "MD | GTA",
-      message: "Hello there I have worked with this company. This is one of the best company I have worked with so far.",
-      ratings: 4,
-      image: ""
+// const testimonials = [
+//   {
+//       name: "Mohammad Maruf",
+//       designation: "CEO | Vibely digital",
+//       message: "Hello there I have worked with this company. This is one of the best company I have worked with so far.",
+//       ratings: 4,
+//       image: ""
+//   },
+//   {
+//       name: "Mehedi hassan",
+//       designation: "MD | GTA",
+//       message: "Hello there I have worked with this company. This is one of the best company I have worked with so far.",
+//       ratings: 4,
+//       image: ""
+//   }
+// ]
+
+const testimonial = async () => {
+  const response = await axios.get('http://localhost:3000/api/testimonials/');
+  if(response.status!==200){
+    throw new Error("Faild to get the testimonial!");
   }
-]
+  return response.data
+}
 
 const getCurrencies = async () => {
   const response = await axios.get('http://localhost:3000/api/currencies/find');
@@ -56,6 +64,7 @@ export default async function Home() {
   const services = await getServices();
   const currencies = await getCurrencies();
   const articles = await getArticles();
+  const testimonials = await testimonial();
   return (
     <Client>
       <main className='nt-main p-2'>

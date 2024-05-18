@@ -1,8 +1,6 @@
-'use client'
-
 import axios from "axios";
 import { Button, Checkbox, Form, Input } from "antd";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 
 type FieldType = {
@@ -12,16 +10,16 @@ type FieldType = {
 };
 
 const Login = () => {
-    const router = useRouter();
+    // const router = useRouter();
 
     
-    const onFinish = async (values: any) => {
-        const {data} = await axios.post('http://localhost:3000/api/auth/admin', values);
-        localStorage.setItem('user', JSON.stringify(data));
-        if(data.authenticated===true){
-            router.push('/admin/dashboard');
-        }
-    };
+    // const onFinish = async (values: any) => {
+    //     const {data} = await axios.post('http://localhost:3000/api/auth/admin', values);
+    //     localStorage.setItem('user', JSON.stringify(data));
+    //     if(data.authenticated===true){
+    //         router.push('/admin/dashboard');
+    //     }
+    // };
     
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
@@ -29,7 +27,8 @@ const Login = () => {
     return(
         <div className="nt-dashboard">
             <div className="nt-login border w-2/5 mx-auto mt-5 rounded-lg p-5">
-                <Form
+                Hello friend this is a wrong page!
+                {/* <Form
                     name="nt-login-form"
                     autoComplete="off"
                     initialValues={{remember: true}}
@@ -65,7 +64,7 @@ const Login = () => {
                         Submit
                     </Button>
                     </Form.Item>
-                </Form>
+                </Form> */}
             </div>
         </div>
     );
