@@ -38,7 +38,6 @@ app.prepare().then(() => {
   // Pers JSON requests
   expressApp.use(express.json());
   
-  
   expressApp.use(cookieParser());
 
   // Route end points
@@ -47,7 +46,6 @@ app.prepare().then(() => {
   // Users
   expressApp.use('/api/users', user);
   expressApp.use('/api/admin', admin);
-
   
   // Currency
   expressApp.use('/api/currencies', currency);

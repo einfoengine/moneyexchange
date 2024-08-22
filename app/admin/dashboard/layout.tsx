@@ -22,7 +22,7 @@ const topMenu = [
 ];
 const asideMenu = [
     { key: 'dashboard', label: (<Link href="/admin/dashboard">Dashboard</Link>) },
-    { key: 'dashboard', label: (<Link href="/admin/dashboard/articles">Articles</Link>) },
+    { key: 'Articles', label: (<Link href="/admin/dashboard/articles">Articles</Link>) },
     { key: 'orders', label: (<Link href="/admin/dashboard/orders">Orders</Link>) },
     { key: 'transactions', label: (<Link href="/admin/dashboard/transections">Transactions</Link>) },
     { key: 'price', label: (<Link href="/admin/dashboard/price">Price</Link>) },
@@ -72,7 +72,7 @@ export default function RootLayout({children}: {children: React.ReactNode}){
                         items={topMenu}
                     />
                 </Header>
-                {children}
+                {/* {children} */}
                 <Content style={{ padding: '0 50px' }}>
                     <div className="nt-main grid grid-cols-12 gap-3">
                         <div className="nt-aside col-span-2">

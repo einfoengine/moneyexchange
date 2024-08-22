@@ -10,10 +10,6 @@ const router = express.Router();
 // Method:      Post
 // Returns:     Succes/Failure message
 router.post('/create', (req, res)=>{
-
-    // console.log();
-
-
     try {
         console.log("Create users: ", req.body);
         res.json({

@@ -3,11 +3,7 @@
 
 // General
 // ====
-html{
-    height: 100%;
-}
 body{
-    height: 100%;
     font-size: $nt-base-font-size;
     p{
         color: fade-out($nt-black, 0.3);
@@ -182,7 +178,6 @@ div{
 
 // Admin / Dashboard
 .nt-admin{
-    height: 100%;
     background-color: $nt-brand-admin-color;
     padding-top: 10px;
     li, a, span{
